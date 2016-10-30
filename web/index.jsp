@@ -1,4 +1,13 @@
+<%@page import="clases.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="clases.Conexion" %>
+<%   
+    Conexion cn = new Conexion();
+    Connection conex = cn.MySQLConnect();
+    Statement stm = conex.createStatement();
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,13 +35,21 @@
                     <span class="icon-bar"></span>
                   </button>
                 </div>
+                
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
                         <ul class="nav navbar-nav">
-                          <li><a href="#">Inicio <span class="sr-only">(current)</span></a></li>
-                          <li><a href="#">Productos</a></li>
-                          <li><a href="#">Nosotros</a></li>
+                            <%
+                                ResultSet rs = stm.executeQuery("select * from pagina");
+                                while (rs.next()) {
+                            %>
+                            <li><a href="<% out.println(rs.getString("Nom_Pagina"));%>.jsp"><% out.println(rs.getString("Titulo")); %></li>
+                            <%  }
+                                rs.close();
+                               stm.close();
+                               conex.close();
+                            %>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                           <form class="navbar-form navbar-left">
