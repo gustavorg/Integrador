@@ -136,20 +136,19 @@
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
-                                  <% HRService p = new HRService();
+            <% HRService p = new HRService();
                 for(Modelo.Producto pro: p.Producto1()){ %> 
             <div class="col-sm-6 col-md-4">
- 
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
                 <div class="caption">
                   <h3><%=pro.getNom_modelo()%></h3>
                   <p><%=pro.getDescripcion()%></p>
-                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                  <p><%=pro.getPrecio()%></p>
                 </div>
               </div>
-      
-            </div>        <%  }  %>
+            </div>        
+            <%  }  %>
             
                       <% HRService a = new HRService();
                 for(Modelo.Categoria cat: a.Categoria2()){ %>
