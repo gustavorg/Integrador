@@ -1,12 +1,10 @@
-<%@page import="clases.Conexion"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
-<%@page import="clases.Conexion" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Modelo.HRService"%>
+<%@page import="java.io.File"%>
+<%@page import="Modelo.Conexion"%>
 <%   
-    Conexion cn = new Conexion();
-    Connection conex = cn.MySQLConnect();
-    Statement stm = conex.createStatement();
-
+   HRService pag = new HRService();
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +26,7 @@
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -41,14 +39,10 @@
                     <div class="container">
                         <ul class="nav navbar-nav">
                             <%
-                                ResultSet rs = stm.executeQuery("select * from pagina");
-                                while (rs.next()) {
+                                for(Modelo.Pagina info: pag.InfoPag()){ 
                             %>
-                            <li><a href="<% out.println(rs.getString("Nom_Pagina"));%>.jsp"><% out.println(rs.getString("Titulo")); %></li>
+                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
                             <%  }
-                                rs.close();
-                               stm.close();
-                               conex.close();
                             %>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -75,7 +69,7 @@
                                     </div>
                                   </div>
                                 </div>
-                            <li><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-shopping-cart" id="btncarrito"></span></button></a></li>
+                            <li id="carrito"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -94,7 +88,7 @@
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                      <img src="recursos/imagenes/c1.jpg" alt="..." style="
+                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
     width: 58%;
     margin-left: 22%;
 ">
@@ -103,7 +97,7 @@
                       </div>
                     </div>
                     <div class="item">
-                      <img src="recursos/imagenes/c1.jpg" alt="..." style="
+                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
     width: 58%;
     margin-left: 22%;
 ">
@@ -124,6 +118,61 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
+	<!--<form action=up.jsp method=post enctype=multipart/form-data>
+		<table>
+			<tr>
+			<td>Imagen</td>
+			<td><input type=file name=fichero></td>
+			</tr>
+			<tr><td colspan=2><input type=submit value=enviar name=enviar>
+			</td>
+			</tr>
+		</table>
+	</form>-->
+        <div class="row">
+            <% HRService pr = new HRService();
+                for(Modelo.Categoria cat: pr.Categoria1()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                                  <% HRService p = new HRService();
+                for(Modelo.Producto pro: p.Producto1()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+            
+                      <% HRService a = new HRService();
+                for(Modelo.Categoria cat: a.Categoria2()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService b = new HRService();
+                for(Modelo.Producto pro: b.Producto2()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+            
+          </div>
             </section>
         </main>
     <footer class="footer">

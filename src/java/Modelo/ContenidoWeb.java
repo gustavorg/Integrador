@@ -1,4 +1,4 @@
-package clases;
+package Modelo;
 public class ContenidoWeb {
     private String id;
     private String nompagina;

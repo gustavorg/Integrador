@@ -1,4 +1,4 @@
-package clases;
+package Modelo;
 public class Pagina {
     private String nompagina;
     private String titulo;
