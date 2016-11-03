@@ -1,3 +1,4 @@
+<%@page import="Modelo.Producto"%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.HRService"%>
@@ -13,7 +14,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inicio</title>
+        <title>Productos</title>
         <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
         <link href="recursos/css/estilo.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -78,99 +79,15 @@
         </header>
         <main>
             <section>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                  </ol>
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
-    width: 58%;
-    margin-left: 22%;
-">
-                      <div class="carousel-caption">
-                        ...
-                      </div>
-                    </div>
-                    <div class="item">
-                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
-    width: 58%;
-    margin-left: 22%;
-">
-                      <div class="carousel-caption">
-                        ...
-                      </div>
-                    </div>
-                    ...
-                  </div>
-
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-	<!--<form action=up.jsp method=post enctype=multipart/form-data>
-		<table>
-			<tr>
-			<td>Imagen</td>
-			<td><input type=file name=fichero></td>
-			</tr>
-			<tr><td colspan=2><input type=submit value=enviar name=enviar>
-			</td>
-			</tr>
-		</table>
-	</form>-->
         <div class="row">
-            <% HRService pr = new HRService();
-                for(Modelo.Categoria cat: pr.Categoria1()){ %>
-            <h1>
-                <%=cat.getNom()%>
-            </h1>
-                <% }%>
-            <% HRService p = new HRService();
-                for(Modelo.Producto pro: p.Producto1()){ %> 
-            <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
-                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
-                <div class="caption">
-                  <h3><%=pro.getNom_modelo()%></h3>
-                  <p><%=pro.getDescripcion()%></p>
-                  <p><%=pro.getPrecio()%></p>
-                </div>
-              </div>
-            </div>        
-            <%  }  %>
-            
-                      <% HRService a = new HRService();
-                for(Modelo.Categoria cat: a.Categoria2()){ %>
-            <h1>
-                <%=cat.getNom()%>
-            </h1>
-                <% }%>
-                 <% HRService b = new HRService();
-                for(Modelo.Producto pro: b.Producto2()){ %> 
-            <div class="col-sm-6 col-md-4">
- 
-              <div class="thumbnail">
-                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
-                <div class="caption">
-                  <h3><%=pro.getNom_modelo()%></h3>
-                  <p><%=pro.getDescripcion()%></p>
-                  <p><%=pro.getPrecio()%></p>
-                </div>
-              </div>
-      
-            </div>        <%  }  %>
-            
+            <div class="col-md-7">
+                <% 
+                  Modelo.Producto pro = new Producto(null, null, null, null, null, null, null, null, null, null, (String)session.getAttribute("modelo"), null);
+                %> 
+                <input type="text" value=<% System.out.print(pro.getNom_modelo()); %>
+            </div>
+            <div class="col-md-5">
+            </div>
           </div>
             </section>
         </main>

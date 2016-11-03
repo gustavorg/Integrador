@@ -98,7 +98,7 @@
                   <div class="caption">
                     <h3><%=pro.getNom_modelo()%></h3>
                     <p><%=pro.getDescripcion()%></p>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <p><%=pro.getPrecio()%><a href="detalleproducto?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 54% !important;">Ver Detalles</a></p>
                   </div>
                 </div>
                 </div>        <%  }  %>
