@@ -5,6 +5,12 @@
 <%@page import="Modelo.Conexion"%>
 <%   
    HRService pag = new HRService();
+   String categoria = request.getParameter("cat");
+   if(request.getParameter("cat") == null){
+       categoria = "0";
+   }else{
+       categoria = request.getParameter("cat");
+   }
 %>
 <!DOCTYPE html>
 <html>
@@ -84,21 +90,21 @@
                 <div class="list-group">
                      <% HRService c = new HRService();
                 for(Modelo.Categoria cat: c.Categorias()){ %> 
-                <a href="#" class="list-group-item"><%=cat.getNom()%></a>
+                <a href="productos.jsp?cat=<%=cat.getId()%>" class="list-group-item"><%=cat.getNom()%></a>
                 <% } %>
               </div>
             </div>
                    <div class="col-md-9">
                  <% HRService b = new HRService();
-                for(Modelo.Producto pro: b.Productos()){ %> 
-       
+    
+                for(Modelo.Producto pro: b.Productos(categoria)){ %> 
                 <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                   <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
                   <div class="caption">
                     <h3><%=pro.getNom_modelo()%></h3>
                     <p><%=pro.getDescripcion()%></p>
-                    <p><%=pro.getPrecio()%><a href="detalleproducto?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 54% !important;">Ver Detalles</a></p>
+                    <p><%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 42% !important;">Ver Producto</a></p>
                   </div>
                 </div>
                 </div>        <%  }  %>

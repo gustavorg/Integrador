@@ -80,16 +80,28 @@
         <main>
             <section>
         <div class="row">
-            <div class="col-md-7">
-                <% 
-                  Modelo.Producto pro = new Producto(null, null, null, null, null, null, null, null, null, null, (String)session.getAttribute("modelo"), null);
-                %> 
-                <input type="text" value=<% System.out.print(pro.getNom_modelo()); %>
+            <div class="container">
+            <% HRService hr = new HRService();
+              String modelo = request.getParameter("mod"); 
+                for(Producto pro:hr.DetalleProducto(modelo)){
+            %>
+                            <h3><%=pro.getNom_marca()%> - <%=pro.getNombre()%> <%=pro.getNom_modelo()%></h3>
+                <hr>
+            <div class="col-md-6">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" class="img-responsive" alt="Responsive image">
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
+                <h3>Descripcion</h3>
+                <p><%=pro.getDescripcion()%></p>
             </div>
-          </div>
-            </section>
+            <div class="col-md-3">
+                <h4>S/<%=pro.getPrecio()%></h4>
+                <button type="button" class="btn btn-success">Comprar</button>
+            </div>
+            <% } %>
+        </div>
+            </div>
+        </section>
         </main>
     <footer class="footer">
       <div class="container">

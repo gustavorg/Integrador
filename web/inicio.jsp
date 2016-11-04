@@ -55,16 +55,29 @@
                             <li><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                   <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+                                    <div class="modal-content" id="login">
                                       <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                                       </div>
                                       <div class="modal-body">
-                                        ...
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                              <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" style="width: 60%;margin-left: 39px;">
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                              <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" style="width: 60%;margin-left: 39px;">
+                                              </div>
+                                            </div>
+                                          </form>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Ingresar</button>
+                                        <button type="submit" class="btn btn-primary">Ingresar</button>
                                       </div>
                                     </div>
                                   </div>
