@@ -100,7 +100,7 @@
                 for(Modelo.Producto pro: b.Productos(categoria)){ %> 
                 <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                  <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                    <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." width="200" >
                   <div class="caption">
                     <h3><%=pro.getNom_modelo()%></h3>
                     <p><%=pro.getDescripcion()%></p>

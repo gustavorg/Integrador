@@ -59,7 +59,7 @@
                                       <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
-                                      </div>
+                                      </div>   
                                       <div class="modal-body">
                                         <form class="form-horizontal">
                                             <div class="form-group">
@@ -162,8 +162,8 @@
               </div>
             </div>        
             <%  }  %>
-            
-                      <% HRService a = new HRService();
+            <br>
+            <% HRService a = new HRService();
                 for(Modelo.Categoria cat: a.Categoria2()){ %>
             <h1>
                 <%=cat.getNom()%>
@@ -183,7 +183,106 @@
               </div>
       
             </div>        <%  }  %>
-            
+             <% HRService k = new HRService();
+                for(Modelo.Categoria cat: k.Categoria3()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService v = new HRService();
+                for(Modelo.Producto pro: v.Producto3()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><%=pro.getPrecio()%></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+             <% HRService m = new HRService();
+                for(Modelo.Categoria cat: m.Categoria4()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService y = new HRService();
+                for(Modelo.Producto pro: y.Producto4()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><%=pro.getPrecio()%></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+             <% HRService j = new HRService();
+                for(Modelo.Categoria cat: j.Categoria5()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService d = new HRService();
+                for(Modelo.Producto pro: d.Producto5()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><%=pro.getPrecio()%></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+             <% HRService g = new HRService();
+                for(Modelo.Categoria cat: g.Categoria6()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService h = new HRService();
+                for(Modelo.Producto pro: h.Producto6()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><%=pro.getPrecio()%></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
+             <% HRService e = new HRService();
+                for(Modelo.Categoria cat: e.Categoria7()){ %>
+            <h1>
+                <%=cat.getNom()%>
+            </h1>
+                <% }%>
+                 <% HRService f = new HRService();
+                for(Modelo.Producto pro: f.Producto7()){ %> 
+            <div class="col-sm-6 col-md-4">
+ 
+              <div class="thumbnail">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <div class="caption">
+                  <h3><%=pro.getNom_modelo()%></h3>
+                  <p><%=pro.getDescripcion()%></p>
+                  <p><%=pro.getPrecio()%></p>
+                </div>
+              </div>
+      
+            </div>        <%  }  %>
           </div>
             </section>
         </main>
