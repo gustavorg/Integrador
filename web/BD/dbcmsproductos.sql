@@ -180,14 +180,17 @@ CREATE TABLE `trabajador` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `Id` int(11) NOT NULL,
-  `Nombre` text NOT NULL,
-  `Apellido` text NOT NULL,
-  `Usuario` text NOT NULL,
-  `Password` text NOT NULL,
-  `Imagen` text NOT NULL,
-  `Correo` text NOT NULL,
-  `Telefono` text NOT NULL
+CREATE TABLE `usuario` (
+  `Num` smallint(5) PRIMARY KEY AUTO_INCREMENT,
+  `Nombre` varchar(45),
+  `Apellido_Paterno` varchar(30),
+  `Apellido_Materno` varchar(30),
+  `Usuario` varchar(45),
+  `Password` varchar(10),
+  `Correo` varchar(45),
+  `Tipo` char(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `usuario` VALUES (1,'Gustavo','Rivero','Garcia','rivero19','123','jgriverogarcia@gmail.com',2),
+(2,'Lizardo','Silva','Ubaldo','lizardo2016','123','C123@grupoutp.edu.pe',1);
 

@@ -25,7 +25,32 @@ public class HRService {
          Conexion cn = new Conexion();
          Connection conex = cn.MySQLConnect();
          
-         
+   
+     public String Login(String usuario,String password){
+             String sql="SELECT Usuario FROM usuario WHERE Usuario = ? AND Password = ? ";
+        String a = "";
+             try{
+            pr=conex.prepareStatement(sql);
+            pr.setString(1, usuario);
+            pr.setString(2, password);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                a = rs.getString(1);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return a;
+    }     
+             
     public Vector<Pagina> InfoPag(){
              Vector<Pagina> vecPag=new Vector<Pagina>();
              String sql="SELECT * FROM pagina";
@@ -600,4 +625,6 @@ public class HRService {
         }
         return vecPro;
     } 
+    
+    
 }
