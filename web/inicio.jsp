@@ -3,10 +3,7 @@
 <%@page import="Modelo.*"%>
 <%@page import="java.io.File"%>
 <%   
-   String usuario=request.getParameter("u");
-   String pwd= request.getParameter("pwd");
    HRService x = new HRService();
-   String nom = x.Login(usuario,pwd);
 %>
 <!DOCTYPE html>
 <html>
@@ -71,10 +68,10 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="#">Mi Perfil</a></li>
                                       <li><a href="#">Mis Compras</a></li>
-                                      <li><a href="#">Cerrar Sesion</a></li>
+                                      <li><a href="login?usu=${sessionScope.usuario}">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
-                            <li id="user" data-id="<%=nom%>"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
+                            <li id="user" data-id="${sessionScope.usuario}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content" id="login">
@@ -83,7 +80,7 @@
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                                       </div>   
                                       <div class="modal-body">
-                                          <form class="form-horizontal" method="get" action="inicio.jsp">
+                                          <form class="form-horizontal" method="POST" action="login">
                                             <div class="form-group">
                                               <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
                                               <div class="col-sm-10">
@@ -110,7 +107,7 @@
             </nav>
         </header>
         <main>
-            <p><%=nom%></p>
+            <p>Bienvenido ${sessionScope.usuario}</p>
             <section>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->

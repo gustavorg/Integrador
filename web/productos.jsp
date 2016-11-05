@@ -25,6 +25,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="recursos/js/bootstrap.min.js"></script>
         <script src="recursos/js/estilo.js"></script>
+                <script>
+            window.onload = function(){
+                $('#useractive').hide();
+                if($('#user').data('id') != ""){
+                    $('#useractive').show();
+                    $('#user').hide();
+               }
+             };
+        </script>
     </head>
     <body>
         <header>
@@ -57,8 +66,16 @@
                             <input type="text" class="form-control" placeholder="Search">
                           </div>
                               <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                          </form>                        
-                            <li><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
+                          </form>                           
+                            <li class="dropdown" id="useractive">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#">Mi Perfil</a></li>
+                                      <li><a href="#">Mis Compras</a></li>
+                                      <li><a href="login">Cerrar Sesion</a></li>
+                                    </ul>
+                            </li>
+                            <li id="user" data-id="${sessionScope.usuario}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -67,10 +84,21 @@
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                                       </div>
                                       <div class="modal-body">
-                                        ...
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Ingresar</button>
+                                          <form class="form-horizontal" method="POST" action="login">
+                                            <div class="form-group">
+                                              <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
+                                              <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputEmail3" name="u" style="width: 60%;margin-left: 39px;">
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                              <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
+                                              </div>
+                                            </div>
+                                               <button type="submit" class="btn btn-primary">Ingresar</button>
+                                          </form>
                                       </div>
                                     </div>
                                   </div>
@@ -83,6 +111,7 @@
             </nav>
         </header>
         <main>
+             <p>Bienvenido ${sessionScope.usuario}</p>
             <section>
         <div class="row">
             <div class="col-md-3">
