@@ -5,12 +5,14 @@
  */
 package Modelo;
 
+import Clases.Producto;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -25,31 +27,24 @@ public class HRService {
          Conexion cn = new Conexion();
          Connection conex = cn.MySQLConnect();
          
-   
-     public String Login(String usuario,String password){
-             String sql="SELECT Usuario FROM usuario WHERE Usuario = ? AND Password = ? ";
-        String a = "";
-             try{
-            pr=conex.prepareStatement(sql);
-            pr.setString(1, usuario);
-            pr.setString(2, password);
-            rs=pr.executeQuery();
+ public  Usuario VerificarUsuario(String usuario){
+        Usuario usu = new Usuario();
+        try{
+            cst = conex.prepareCall("CALL LOGEAR_USUARIO (?)");
+            cst.setString(1, usuario);
+            ResultSet rs = cst.executeQuery();
+            
             while(rs.next()){
-                a = rs.getString(1);
+                usu.setUsuario(rs.getString("Usuario")); 
+                usu.setPwd(rs.getString("Password"));
+                usu.setTipo(rs.getString("Tipo"));
             }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return a;
-    }     
+        }catch(Exception e){System.out.println(e);}
+        return usu;
+    }  
+         
+         
+  //SELECT * FROM usuario WHERE Usuario = '" + usuario + "' AND Password = '"+ password + "'
              
     public Vector<Pagina> InfoPag(){
              Vector<Pagina> vecPag=new Vector<Pagina>();
@@ -625,6 +620,86 @@ public class HRService {
         }
         return vecPro;
     } 
+    public Vector<ContenidoWeb> MostrarContenido(String id){
+             Vector<ContenidoWeb> vecWeb=new Vector<ContenidoWeb>();
+             String sql="SELECT * FROM contenido_web WHERE Id = '"+ id +"'";
+        try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                ContenidoWeb web = new ContenidoWeb(rs.getString("Id"),rs.getString("Nom_Pagina"),rs.getString("Contenido"));
+                web.setId(rs.getString("Id"));
+                web.setNompagina(rs.getString("Nom_Pagina"));
+                web.setContenido(rs.getString("Contenido"));
+                vecWeb.add(web);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecWeb;
+    }
     
+        public ArrayList<Producto> getAllProductos(){
+        ArrayList<Producto> productos = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id";
+            pst = conex.prepareCall(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                productos.add(new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate")));
+            }
+        } catch (Exception e) {
+            
+        } finally{
+            try {
+                if(rs != null) rs.close();
+                if(pst != null) pst.close();
+                if(conex != null) conex.close();
+            } catch (Exception e) {
+                System.out.println("ERROR allproductos");
+            }
+        }       
+        return productos;        
+    }
+    
+    
+     public Producto ProCarrito(String modelo){
+             String sql;
+             Producto producto = null;
+             try{
+                sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_modelo = '" + modelo + "' AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id";
+                pr=conex.prepareStatement(sql);
+                rs=pr.executeQuery();
+                while(rs.next()){
+                producto = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
+                }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try {
+                if(rs != null) rs.close();
+                if(pr != null) pr.close();
+                if(conex != null) conex.close();
+            } catch (Exception e) {
+                System.err.println("ERROR PROCARRITO");
+            }
+        }
+             return producto;
+    } 
+    
+ 
+    
+    
+      
     
 }

@@ -1,3 +1,4 @@
+<%@page import="Clases.Producto"%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.*"%>
@@ -68,10 +69,10 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="#">Mi Perfil</a></li>
                                       <li><a href="#">Mis Compras</a></li>
-                                      <li><a href="login?usu=${sessionScope.usuario}">Cerrar Sesion</a></li>
+                                      <li><a href="validacion?accion=logout&pag=inicio">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
-                            <li id="user" data-id="${sessionScope.usuario}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
+                            <li id="user" data-id="${sessionScope.user}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content" id="login">
@@ -80,26 +81,30 @@
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                                       </div>   
                                       <div class="modal-body">
-                                          <form class="form-horizontal" method="POST" action="login">
+                                          <form class="form-horizontal" method="POST" action="validacion">
                                             <div class="form-group">
-                                              <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
+                                              <label for="user" class="col-sm-2 control-label">Usuario</label>
                                               <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputEmail3" name="u" style="width: 60%;margin-left: 39px;">
+                                                <input type="text" class="form-control" id="inputEmail3" name="user" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
                                             <div class="form-group">
-                                              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                              <label for="pwd" class="col-sm-2 control-label">Password</label>
                                               <div class="col-sm-10">
                                                 <input type="password" class="form-control" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
+                                              <input type="hidden" name="accion" value="login">
+                                              <input type="hidden" name="pag" value="inicio">
                                                <button type="submit" class="btn btn-primary">Ingresar</button>
                                           </form>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+    <li id="carrito"><a href="carrito.jsp" style="
+    margin-top: -15px;
+"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -107,7 +112,7 @@
             </nav>
         </header>
         <main>
-            <p>Bienvenido ${sessionScope.usuario}</p>
+            <p>Bienvenido ${sessionScope.user}</p>
             <section>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
@@ -170,7 +175,7 @@
                 <div class="row">
                     <% HRService p = new HRService();
                         for(Producto pro: p.Producto1()){ %> 
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-3">
                       <div class="thumbnail">
                         <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
                         <div class="caption">
@@ -191,10 +196,10 @@
                 <div class="row">
                  <% HRService b = new HRService();
                 for(Producto pro: b.Producto2()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
-                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
+                <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." >
                 <div class="caption">
                   <h3><%=pro.getNom_modelo()%></h3>
                   <p><%=pro.getDescripcion()%></p>
@@ -212,7 +217,7 @@
                 <div class="row">
                  <% HRService v = new HRService();
                 for(Producto pro: v.Producto3()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
@@ -233,7 +238,7 @@
                 <div class="row">
                  <% HRService y = new HRService();
                 for(Producto pro: y.Producto4()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
@@ -254,7 +259,7 @@
                 <div class="row">
                  <% HRService d = new HRService();
                 for(Producto pro: d.Producto5()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
@@ -275,7 +280,7 @@
                 <div class="row">
                  <% HRService h = new HRService();
                 for(Producto pro: h.Producto6()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
@@ -296,7 +301,7 @@
                 <div class="row">
                  <% HRService f = new HRService();
                 for(Producto pro: f.Producto7()){ %> 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
                 <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">

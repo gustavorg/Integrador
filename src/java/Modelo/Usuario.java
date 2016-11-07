@@ -9,6 +9,10 @@ public class Usuario {
    private String email;
    private String tipo;
    
+       public Usuario() {
+    }
+   
+   
    public Usuario(int id,String nombre,String apa,String ama,String usuario,String pwd,String email,String tipo){
     
        this.id = id;

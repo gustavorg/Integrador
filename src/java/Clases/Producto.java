@@ -1,4 +1,4 @@
-package Modelo;
+package Clases;
 public class Producto {
     private Integer id;
     private String nombre;
@@ -13,6 +13,9 @@ public class Producto {
     private String nom_modelo;
     private String nom_categoria;
     
+    public Producto(){
+        
+    }
     public Producto(Integer id,String nombre,String descripcion,String imagen,Double precio,Integer categoria,Integer stock,Integer Id_marca, Integer Id_modelo, String nom_marca,String nom_modelo,String nom_categoria)
     {
     this.id = id;

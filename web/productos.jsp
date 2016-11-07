@@ -72,38 +72,42 @@
                                     <ul class="dropdown-menu">
                                       <li><a href="#">Mi Perfil</a></li>
                                       <li><a href="#">Mis Compras</a></li>
-                                      <li><a href="login">Cerrar Sesion</a></li>
+                                      <li><a href="validacion?accion=logout&pag=productos">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
-                            <li id="user" data-id="${sessionScope.usuario}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
+                            <li id="user" data-id="${sessionScope.user}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                   <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+                                    <div class="modal-content" id="login">
                                       <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Login</h4>
-                                      </div>
+                                      </div>   
                                       <div class="modal-body">
-                                          <form class="form-horizontal" method="POST" action="login">
+                                          <form class="form-horizontal" method="POST" action="validacion">
                                             <div class="form-group">
-                                              <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
+                                              <label for="user" class="col-sm-2 control-label">Usuario</label>
                                               <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputEmail3" name="u" style="width: 60%;margin-left: 39px;">
+                                                <input type="text" class="form-control" id="inputEmail3" name="user" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
                                             <div class="form-group">
-                                              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                              <label for="pwd" class="col-sm-2 control-label">Password</label>
                                               <div class="col-sm-10">
                                                 <input type="password" class="form-control" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
+                                              <input type="hidden" name="accion" value="login">
+                                              <input type="hidden" name="pag" value="productos">
                                                <button type="submit" class="btn btn-primary">Ingresar</button>
                                           </form>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                            <li id="carrito"><a href="carrito.jsp" style="
+    margin-top: -15px;
+"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -111,13 +115,13 @@
             </nav>
         </header>
         <main>
-             <p>Bienvenido ${sessionScope.usuario}</p>
+             <p>Bienvenido ${sessionScope.user}</p>
             <section>
         <div class="row">
             <div class="col-md-3">
                 <h1>Categorias</h1>
                 <div class="list-group">
-                     <% HRService c = new HRService();
+                     <% HRService c = new HRService(); 
                 for(Modelo.Categoria cat: c.Categorias()){ %> 
                 <a href="productos.jsp?cat=<%=cat.getId()%>" class="list-group-item"><%=cat.getNom()%></a>
                 <% } %>
@@ -126,17 +130,18 @@
                    <div class="col-md-9">
                  <% HRService b = new HRService();
     
-                for(Modelo.Producto pro: b.Productos(categoria)){ %> 
+                for(Clases.Producto pro: b.Productos(categoria)){ %> 
                 <div class="col-sm-6 col-md-3">
+                    <div class="row">
                 <div class="thumbnail">
-                    <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." width="200" >
+                    <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." width="200"  height="200">
                   <div class="caption">
                     <h3><%=pro.getNom_modelo()%></h3>
-                    <p><%=pro.getDescripcion()%></p>
+
                     <p><%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 42% !important;">Ver Producto</a></p>
                   </div>
                 </div>
-                </div>        <%  }  %>
+                </div> </div>       <%  }  %>
             </div>
           </div>
             </section>
