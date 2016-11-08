@@ -30,7 +30,7 @@
                                   <li><a href="Paginas/nosotros.jsp">Nosotros</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../logout?user=${sessionScope.usuario}">Cerrar Sesion</a></li>
+                            <li><a href="../validacion?accion=logout&pag=">Cerrar Sesion</a></li>
                         </ul>
                     </div>
                     <div class="col-md-8">

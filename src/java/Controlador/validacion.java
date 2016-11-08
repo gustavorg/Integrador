@@ -109,7 +109,8 @@ public class validacion extends HttpServlet {
             response.sendRedirect("nosotros.jsp");
         }else if(pag.equals("detalle")){
             response.sendRedirect("producto_detalle.jsp?mod=" + request.getParameter("modelo"));
-        }
+        }else if(pag.equals(""))
+            response.sendRedirect("inicio.jsp");
     }          
              
         

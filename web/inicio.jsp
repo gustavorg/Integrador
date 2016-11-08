@@ -138,7 +138,7 @@
     width: 58%;
     margin-left: 22%;
 ">
-                  </div>
+                    </div>
 <% } %>
                   <!-- Controls -->
                   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -150,17 +150,7 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
-	<!--<form action=up.jsp method=post enctype=multipart/form-data>
-		<table>
-			<tr>
-			<td>Imagen</td>
-			<td><input type=file name=fichero></td>
-			</tr>
-			<tr><td colspan=2><input type=submit value=enviar name=enviar>
-			</td>
-			</tr>
-		</table>
-	</form>-->
+</div>
         <div class="row">
             <% HRService pr = new HRService();
                 for(Categoria cat: pr.Categoria1()){ %>

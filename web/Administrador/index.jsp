@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index.jsp
-    Created on : 01-nov-2016, 23:19:37
-    Author     : GRLIMA
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,11 +28,11 @@
                           <li><a href="Paginas/nosotros.jsp">Nosotros</a></li>
                         </ul>
                     </li>
-                    <li><a href="../logout?user=${sessionScope.usuario}">Cerrar Sesion</a></li>
+                    <li><a href="../validacion?accion=logout&pag=">Cerrar Sesion</a></li>
                 </ul>
             </div>
             <div class="col-md-8">
-                 <h1>Bienvenido ${sessionScope.usuario}</h1>
+                 <h1>Bienvenido  ${sessionScope.user}</h1>
             </div>
         </div>
        
