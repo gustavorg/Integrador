@@ -122,28 +122,24 @@
                     <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                   </ol>
                   <!-- Wrapper for slides -->
+
                   <div class="carousel-inner" role="listbox">
                     <div class="item active">
                       <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
     width: 58%;
     margin-left: 22%;
 ">
-                      <div class="carousel-caption">
-                        ...
-                      </div>
                     </div>
+                  <% 
+                      HRService hr = new HRService();
+                for(ContenidoWeb web: hr.MostrarCarrousel("inicio")){ %>
                     <div class="item">
-                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
+                      <img src="recursos/imagenes/index/<%= web.getContenido() %>" alt="..." style="
     width: 58%;
     margin-left: 22%;
 ">
-                      <div class="carousel-caption">
-                        ...
-                      </div>
-                    </div>
-                    ...
                   </div>
-
+<% } %>
                   <!-- Controls -->
                   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

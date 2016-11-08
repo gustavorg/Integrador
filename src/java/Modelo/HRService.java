@@ -647,6 +647,33 @@ public class HRService {
         return vecWeb;
     }
     
+    public Vector<ContenidoWeb> MostrarCarrousel(String id){
+             Vector<ContenidoWeb> vecWeb=new Vector<ContenidoWeb>();
+             String sql="SELECT * FROM contenido_web WHERE Nom_Pagina = '"+ id +"'";
+        try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                ContenidoWeb web = new ContenidoWeb(rs.getString("Id"),rs.getString("Nom_Pagina"),rs.getString("Contenido"));
+                web.setId(rs.getString("Id"));
+                web.setNompagina(rs.getString("Nom_Pagina"));
+                web.setContenido(rs.getString("Contenido"));
+                vecWeb.add(web);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecWeb;
+    }
+    
         public ArrayList<Producto> getAllProductos(){
         ArrayList<Producto> productos = new ArrayList<>();
         PreparedStatement pst = null;
