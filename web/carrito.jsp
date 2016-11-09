@@ -115,23 +115,21 @@
         <section id="cart_items">
 		<div class="container">
 			<div class="table-responsive cart_info" id="cart-container">
-                            <table class="table table-condensed" id="shop-table">
+                            <table class="table table-condensed" id="shop-table" style="margin-top: 13px;">
+                                <form method="POST" action="Venta">
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
 							<td class="description"></td>
 							<td class="price">Costo</td>
 							<td class="quantity">Cantidad</td>
-							<td class="total">Total</td>
+							<td class="total">Sub Total</td>
 							<td></td>
 						</tr>
 					</thead>
 					<tbody>
-                                            <button type="button" class="btn btn-primary"><a href="javascript:window.history.go(-2);" style="
-    color: white;
-    text-decoration: none;
-">Seguir Comprando</a></button>
-                                            
+                                            <button type="button" class="btn btn-primary"><a href="javascript:window.history.go(-2);" style="color: white;text-decoration: none;">Seguir Comprando</a></button>
+                                                                                             <input type="submit" class="btn btn-success" value="Comprar" style="margin-left: 33px;">
                                                 <%
                                                     ProductoCar pro= new ProductoCar();
                                                     double total = 0;
@@ -146,11 +144,13 @@
                                                             <a href=""><img src="recursos/imagenes/productos/<%= producto.getImagen()%>" alt="" width="120"></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href=""><%= producto.getNombre()%></a></h4>
+								<h4><%= producto.getNombre()%></h4>
+                                                                <input type="hidden" name="IdProd" value=<%= producto.getId()%>>
 								<p>Web ID: <%= producto.getId()%></p>
 							</td>
 							<td class="cart_price">
-								<p>$<%= producto.getPrecio()%></p>
+                                                            <input type="hidden" name="precio" value=<%= producto.getPrecio()%>>
+								<p>S/<%= producto.getPrecio()%></p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -160,6 +160,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
+                                                                <input type="hidden" name="subtotal" value=<%= Math.round(producto.getPrecio()*a.getCantidad()*100.0) / 100.0%>>
 								<p class="cart_total_price">S/<%= Math.round(producto.getPrecio()*a.getCantidad()*100.0) / 100.0%></p>
 							</td>
 							<td class="cart_delete">
@@ -172,13 +173,21 @@
                                                 
                                                 <%}}%>
 					</tbody>
-                                           
-				</table>
-                                         <div class="total_area" style="
-    text-align: right;
-">
-                                             <button type="button" class="btn btn-success">Comprar  <span class="glyphicon glyphicon-check"></span></button>
-                                             <h4>TOTAL :  <span id="txt-subtotal">S/<%= Math.round(total*100.0)/100.0%></span></h4>
+                                        <input type="hidden" name="user" value=${sessionScope.user} >
+                                             <input type="hidden" name="total" value=<%= Math.round(total*100.0)/100.0%> >
+                                              <input type="hidden" name="accion" value="RegistrarVenta">
+                                             <td></td><td></td><td></td><td></td><td><h4>TOTAL</h4>
+                                                 <span id="txt-subtotal">S/<%= Math.round(total*100.0)/100.0%></span>
+                                             </td>
+                                                                            
+                                             
+                                </form>
+                            </table>        
+				
+                                         <div class="total_area" >                                          
+                                             
+
+                                         </div>
 			</div> 
                                 <% if (articulos == null){%>
                                 <h4>No hay Articulos en el carro</h4>

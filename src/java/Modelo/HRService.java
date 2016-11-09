@@ -724,9 +724,53 @@ public class HRService {
              return producto;
     } 
     
- 
-    
-    
+      public boolean insertarVenta(Venta v){
+        boolean resp = false;
+        
+        try{
+            cst = conex.prepareCall("CALL REGISTRAR_VENTA (?,?)");
+            cst.setString(1, v.getUsuario());
+            cst.setDouble(2, v.getTotal());
+            int i = cst.executeUpdate();
+            
+            if(i == 1){
+                resp = true;
+            }else{
+                resp = false;
+            }
+            
+        }catch(Exception e){System.out.println(e);}
+        return resp;
+    }
       
+    public Vector<Miscompras> MisCompras(String usuario){
+        Vector<Miscompras> vecComp=new Vector<Miscompras>();
+        String sql="SELECT a.imagen,a.nombre,b.Precio,b.Cantidad,b.SubTotal FROM productos a,detalle_venta b,usuario c WHERE a.id = b.Id_Producto AND a.precio = b.Precio AND c.Usuario = b.Cod_Usuario AND c.Usuario = '" + usuario +"'";
+    try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                Miscompras comp = new Miscompras();
+                comp.setImagen(rs.getString("imagen"));
+                comp.setNomprod(rs.getString("nombre"));
+                comp.setPrecio(rs.getDouble("Precio"));
+                comp.setCantidad(rs.getInt("Cantidad"));
+                comp.setSubtotal(rs.getDouble("SubTotal"));
+                vecComp.add(comp);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecComp;
+    }
+
     
 }

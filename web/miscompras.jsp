@@ -1,17 +1,9 @@
-<%@page import="java.sql.*" %>
+<%@page import="Controlador.ProductoCar"%>
+<%@page import="Clases.Producto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="Modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Modelo.HRService"%>
-<%@page import="java.io.File"%>
-<%@page import="Modelo.Conexion"%>
-<%   
-   HRService pag = new HRService();
-   String categoria = request.getParameter("cat");
-   if(request.getParameter("cat") == null){
-       categoria = "0";
-   }else{
-       categoria = request.getParameter("cat");
-   }
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,12 +11,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Productos</title>
+        <title>Carrito</title>
         <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
         <link href="recursos/css/estilo.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="recursos/js/bootstrap.min.js"></script>
         <script src="recursos/js/estilo.js"></script>
+        <script src="recursos/js/carrito.js"></script>
                 <script>
             window.onload = function(){
                 $('#useractive').hide();
@@ -36,7 +29,7 @@
         </script>
     </head>
     <body>
-        <header>
+         <header>
             <nav class="navbar navbar-default">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,7 +47,8 @@
                     <div class="container">
                         <ul class="nav navbar-nav">
                             <%
-                                for(Modelo.Pagina info: pag.InfoPag()){ 
+                                HRService pag = new HRService();
+                                for(Pagina info: pag.InfoPag()){ 
                             %>
                             <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
                             <%  }
@@ -62,17 +56,17 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                           <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                          </form>                           
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                          </form>
                             <li class="dropdown" id="useractive">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
                                       <li><a href="perfil.jsp">Mi Perfil</a></li>
-                                      <li><a href="miscompras.jsp">Mis Compras</a></li>
-                                      <li><a href="validacion?accion=logout&pag=productos">Cerrar Sesion</a></li>
+                                      <li><a href="#">Mis Compras</a></li>
+                                      <li><a href="validacion?accion=logout&pag=carrito">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
                             <li id="user" data-id="${sessionScope.user}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
@@ -97,60 +91,70 @@
                                                 <input type="password" class="form-control" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
-                                              <input type="hidden" name="accion" value="login">
-                                              <input type="hidden" name="pag" value="productos">
+                                               <input type="hidden" name="accion" value="login">
+                                               <input type="hidden" name="pag" value="nosotros">
                                                <button type="submit" class="btn btn-primary">Ingresar</button>
                                           </form>
                                       </div>
-                                    </div>
+                                   </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><a href="carrito.jsp" style="
-    margin-top: -15px;
-"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                            <li id="carrito"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
         </header>
-        <main>
-             <p>Bienvenido ${sessionScope.user}</p>
-            <section>
-        <div class="row">
-            <div class="col-md-3">
-                <h1>Categorias</h1>
-                <div class="list-group">
-                     <% HRService c = new HRService(); 
-                for(Modelo.Categoria cat: c.Categorias()){ %> 
-                <a href="productos.jsp?cat=<%=cat.getId()%>" class="list-group-item"><%=cat.getNom()%></a>
-                <% } %>
-              </div>
-            </div>
-                   <div class="col-md-9">
-                 <% HRService b = new HRService();
-    
-                for(Clases.Producto pro: b.Productos(categoria)){ %> 
-                <div class="col-sm-6 col-md-3">
-                    <div class="row">
-                <div class="thumbnail">
-                    <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." width="200"  height="200">
-                  <div class="caption">
-                    <h3><%=pro.getNom_modelo()%></h3>
-
-                    <p><%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 42% !important;">Ver Producto</a></p>
-                  </div>
-                </div>
-                </div> </div>       <%  }  %>
-            </div>
-          </div>
-            </section>
-        </main>
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
-    </footer>
+        <section id="cart_items">
+		<div class="container">
+			<div class="table-responsive cart_info" id="cart-container">
+                            <table class="table table-condensed" id="shop-table" style="margin-top: 13px;">
+                                <form method="POST" action="Venta">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Costo</td>
+							<td class="quantity">Cantidad</td>
+							<td class="total">Sub Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+                                                <%
+                                                    
+                                                    HRService hr= new HRService();
+                         
+                                                    for(Miscompras comp: hr.MisCompras("rivero19") ){
+                                                %>
+						<tr>
+							<td class="cart_product">
+                                                            <a href=""><img src="recursos/imagenes/productos/<%= comp.getImagen()%>" alt="" width="120"></a>
+							</td>
+							<td class="cart_description">
+								<h4><%= comp.getNomprod() %></h4>
+							</td>
+							<td class="cart_price">
+								<p>S/<%= comp.getPrecio()%></p>
+							</td>
+							<td class="cart_quantity">
+                                                                <p><%= comp.getCantidad()%></p>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">S/<%= comp.getSubtotal() %></p>
+							</td>
+						</tr>
+                                                <tr>
+                                                </tr>
+                                                
+                                                <%}%>
+					</tbody>                 
+                                </form>
+                            </table>        
+			</div> 
+                                                
+		</div>
+	</section> <!--/#cart_items-->
     </body>
 </html>
-

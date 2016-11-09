@@ -63,12 +63,10 @@
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
                             <li class="dropdown" id="useractive">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="
-    margin-right: -21px !important;
-"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="#">Mi Perfil</a></li>
-                                      <li><a href="#">Mis Compras</a></li>
+                                      <li><a href="perfil.jsp">Mi Perfil</a></li>
+                                      <li><a href="miscompras.jsp">Mis Compras</a></li>
                                       <li><a href="validacion?accion=logout&pag=inicio">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
@@ -102,9 +100,7 @@
                                     </div>
                                   </div>
                                 </div>
-    <li id="carrito"><a href="carrito.jsp" style="
-    margin-top: -15px;
-"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                        <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -125,21 +121,15 @@
 
                   <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="
-    width: 58%;
-    margin-left: 22%;
-">
+                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="width: 58%;margin-left: 22%;">
                     </div>
                   <% 
                       HRService hr = new HRService();
                 for(ContenidoWeb web: hr.MostrarCarrousel("inicio")){ %>
                     <div class="item">
-                      <img src="recursos/imagenes/index/<%= web.getContenido() %>" alt="..." style="
-    width: 58%;
-    margin-left: 22%;
-">
+                      <img src="recursos/imagenes/index/<%= web.getContenido() %>" alt="..." style="width: 58%;margin-left: 22%;">
                     </div>
-<% } %>
+                <% } %>
                   <!-- Controls -->
                   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

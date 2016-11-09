@@ -71,8 +71,8 @@
     margin-right: -21px !important;
 "><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="#">Mi Perfil</a></li>
-                                      <li><a href="#">Mis Compras</a></li>
+                                      <li><a href="perfil.jsp">Mi Perfil</a></li>
+                                      <li><a href="miscompras.jsp">Mis Compras</a></li>
                                       <li><a href="validacion?accion=logout&pag=detalle&modelo=<%=request.getParameter("mod")%>">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
