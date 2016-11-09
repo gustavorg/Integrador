@@ -771,6 +771,87 @@ public class HRService {
         }
         return vecComp;
     }
-
     
+        public Vector<Venta> Ventas(){
+        Vector<Venta> vecV=new Vector<Venta>();
+        String sql="SELECT CONCAT(b.Nombre, ' ' ,b.Apellido_Paterno,' ' ,b.Apellido_Materno) as 'Cod',a.Total,a.Fecha,a.Num_V FROM venta a, usuario b WHERE b.Usuario = a.Cod ";
+    try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                Venta ven = new Venta();
+                ven.setUsuario(rs.getString("Cod"));
+                ven.setTotal(rs.getDouble("Total"));
+                ven.setFecha(rs.getString("Fecha"));
+                ven.setId(rs.getInt("Num_V"));
+                vecV.add(ven);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecV;
+    }
+    
+        public String IdVenta(){
+            String sql ="Select Num_V from venta order by Fecha desc limit 1";
+            String id= "";
+            try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                Venta ven = new Venta();
+                ven.setId(rs.getInt("Num_V"));
+                id = String.valueOf(ven.getId());
+            } 
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+            return id;
+        }
+
+     public Vector<DetalleVenta> DetalleVenta(String id){
+        Vector<DetalleVenta> vecV=new Vector<DetalleVenta>();
+        String sql="SELECT DISTINCT b.nombre as nom,b.imagen as img,b.Precio as precio,a.Cantidad as cant,a.SubTotal as subt FROM dbcmsproductos.detalle_venta a ,productos b,usuario c\n" +
+        "WHERE Num_V = '" + id + "' AND b.id = a.Id_Producto";
+    try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                DetalleVenta ven = new DetalleVenta();
+                ven.setNomprod(rs.getString("nom"));
+                ven.setImagen(rs.getString("img"));
+                ven.setPrecio(rs.getDouble("precio"));
+                ven.setCant(rs.getInt("cant"));
+                ven.setSubtotal(rs.getDouble("subt"));
+                vecV.add(ven);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecV;
+    }
 }

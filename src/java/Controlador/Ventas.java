@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +51,7 @@ response.setContentType("text/html;charset=UTF-8");
             if(accion.equals("RegistrarVenta")){
                 this.RegistrarVenta(request, response); 
             }
+            
         }
     }
 private void RegistrarVenta(HttpServletRequest request, HttpServletResponse response)
@@ -70,6 +72,7 @@ private void RegistrarVenta(HttpServletRequest request, HttpServletResponse resp
         HRService hr = new HRService();
         boolean resp = hr.insertarVenta(v);
         
+         
         if(resp){
             // Regostrar detalle vemta
             String IdProducto[] = request.getParameterValues("IdProd");
@@ -77,15 +80,18 @@ private void RegistrarVenta(HttpServletRequest request, HttpServletResponse resp
             String CantidadProducto[] = request.getParameterValues("quantity");
             String SubTotalProducto[] = request.getParameterValues("subtotal");
             String Usuario[] = request.getParameterValues("user");
-            
+            String id[] = request.getParameterValues("IdVenta");
+
+      
             for(int i=0; i<IdProducto.length;i++){
                 try{
-                    cst = conex.prepareCall("CALL REGISTRAR_DETALLE_VENTA (?,?,?,?,?)");
+                    cst = conex.prepareCall("CALL REGISTRAR_DETALLE_VENTA (?,?,?,?,?,?)");
                     cst.setString(1, IdProducto[i]);
                     cst.setString(2, PrecioProducto[i]);
                     cst.setString(3, CantidadProducto[i]);
                     cst.setString(4, SubTotalProducto[i]);
                     cst.setString(5, Usuario[i]);
+                    cst.setString(6, id[i]);
                     int j = cst.executeUpdate();
                     if(j==1){
                         out.print("Registro Satisfactorio"); 

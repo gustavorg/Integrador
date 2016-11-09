@@ -12,113 +12,90 @@ import Clases.Producto;
  * @author Daniel
  */
 public class DetalleVenta {
-    private String numero;
-    private String CodigoVenta;
-    private String codigoProducto;
-    private String NombreProducto;
-    private double Precio;
-    private double Cantidad;
-    private double Descuento;
-    private double SubTotal;
-    private Producto Producto;
-    private Venta Venta;
-
-    public DetalleVenta() {
+    private String imagen;
+    private String nomprod;
+    private double precio;
+    private int cant;
+    private double subtotal;
+    public DetalleVenta(){
+        
+    }
+    public DetalleVenta(String imagen,String nomprod,double precio,int cant,double subtotal){
+        this.imagen = imagen;
+        this.nomprod = nomprod;
+        this.precio = precio;
+        this.cant = cant;
+        this.subtotal = subtotal;
     }
 
-    public DetalleVenta(String numero, String CodigoVenta, String codigoProducto, String NombreProducto, double Precio, double Cantidad, double Descuento, double SubTotal, Producto Producto, Venta Venta) {
-        this.numero = numero;
-        this.CodigoVenta = CodigoVenta;
-        this.codigoProducto = codigoProducto;
-        this.NombreProducto = NombreProducto;
-        this.Precio = Precio;
-        this.Cantidad = Cantidad;
-        this.Descuento = Descuento;
-        this.SubTotal = SubTotal;
-        this.Producto = Producto;
-        this.Venta = Venta;
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
     }
 
-    public String getNumero() {
-        return numero;
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    /**
+     * @return the nomprod
+     */
+    public String getNomprod() {
+        return nomprod;
     }
 
-    public String getCodigoVenta() {
-        return CodigoVenta;
+    /**
+     * @param nomprod the nomprod to set
+     */
+    public void setNomprod(String nomprod) {
+        this.nomprod = nomprod;
     }
 
-    public void setCodigoVenta(String CodigoVenta) {
-        this.CodigoVenta = CodigoVenta;
-    }
-
-    public String getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }
-
-    public String getNombreProducto() {
-        return NombreProducto;
-    }
-
-    public void setNombreProducto(String NombreProducto) {
-        this.NombreProducto = NombreProducto;
-    }
-
+    /**
+     * @return the precio
+     */
     public double getPrecio() {
-        return Precio;
+        return precio;
     }
 
-    public void setPrecio(double Precio) {
-        this.Precio = Precio;
+    /**
+     * @param precio the precio to set
+     */
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
-    public double getCantidad() {
-        return Cantidad;
+    /**
+     * @return the cant
+     */
+    public int getCant() {
+        return cant;
     }
 
-    public void setCantidad(double Cantidad) {
-        this.Cantidad = Cantidad;
+    /**
+     * @param cant the cant to set
+     */
+    public void setCant(int cant) {
+        this.cant = cant;
     }
 
-    public double getDescuento() {
-        return Descuento;
+    /**
+     * @return the subtotal
+     */
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setDescuento(double Descuento) {
-        this.Descuento = Descuento;
+    /**
+     * @param subtotal the subtotal to set
+     */
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
-    public double getSubTotal() {
-        return SubTotal;
-    }
-
-    public void setSubTotal(double SubTotal) {
-        this.SubTotal = SubTotal;
-    }
-
-    public Producto getProducto() {
-        return Producto;
-    }
-
-    public void setProducto(Producto Producto) {
-        this.Producto = Producto;
-    }
-
-    public Venta getVenta() {
-        return Venta;
-    }
-
-    public void setVenta(Venta Venta) {
-        this.Venta = Venta;
-    }
-
-    
-    
 }

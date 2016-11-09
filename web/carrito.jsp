@@ -133,12 +133,21 @@
                                                 <%
                                                     ProductoCar pro= new ProductoCar();
                                                     double total = 0;
+                                                    HRService h = new HRService();
+                                                     String id = h.IdVenta();
+                                                     if(id == ""){
+                                                         id = "1";
+                                                     }else if(id == "1"){
+                                                         id = "2";
+                                                     }
                                                     if(articulos != null){
                                                     for(Articulo a: articulos){
                                                         Producto producto = pro.getProducto(a.getIdProducto());
-                                                        total += a.getCantidad() * producto.getPrecio();                                                   
+                                                        total += a.getCantidad() * producto.getPrecio();  
+                                                   
+
                                                 %>
-                                            
+                                                
 						<tr>
 							<td class="cart_product">
                                                             <a href=""><img src="recursos/imagenes/productos/<%= producto.getImagen()%>" alt="" width="120"></a>
@@ -170,12 +179,14 @@
 						</tr>
                                                 <tr>
                                                 </tr>
-                                                
+                                                <input type="hidden" name="IdVenta" value=<%=id %>>
+                                                <input type="hidden" name="user" value=${sessionScope.user} >
                                                 <%}}%>
 					</tbody>
-                                        <input type="hidden" name="user" value=${sessionScope.user} >
+                                        
                                              <input type="hidden" name="total" value=<%= Math.round(total*100.0)/100.0%> >
                                               <input type="hidden" name="accion" value="RegistrarVenta">
+                                              
                                              <td></td><td></td><td></td><td></td><td><h4>TOTAL</h4>
                                                  <span id="txt-subtotal">S/<%= Math.round(total*100.0)/100.0%></span>
                                              </td>

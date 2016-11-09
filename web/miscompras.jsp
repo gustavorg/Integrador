@@ -122,6 +122,7 @@
 						</tr>
 					</thead>
 					<tbody>
+                                            
                                                 <%
                                                     
                                                     HRService hr= new HRService();
@@ -144,6 +145,7 @@
 							<td class="cart_total">
 								<p class="cart_total_price">S/<%= comp.getSubtotal() %></p>
 							</td>
+                                                        
 						</tr>
                                                 <tr>
                                                 </tr>

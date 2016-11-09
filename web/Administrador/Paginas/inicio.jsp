@@ -25,9 +25,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" role="presentation" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Editar Paginas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="Paginas/inicio.jsp">Inicio</a></li>
-                          <li><a href="Paginas/productos.jsp">Productos</a></li>
-                          <li><a href="Paginas/nosotros.jsp">Nosotros</a></li>
+                          <li><a href="inicio.jsp">Inicio</a></li>
+                          <li><a href="productos.jsp">Productos</a></li>
+                          <li><a href="nosotros.jsp">Nosotros</a></li>
                         </ul>
                     </li>
                    <li><a href="../validacion?accion=logout&pag=">Cerrar Sesion</a></li>

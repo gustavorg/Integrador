@@ -1,3 +1,4 @@
+<%@page import="Modelo.DetalleVenta"%>
 <%@page import="Modelo.Venta"%>
 <%@page import="Modelo.HRService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -49,25 +50,29 @@
 					</thead>
 					<tbody>
                                                 <% int i=1;
+                                                    String id = request.getParameter("comp");
                                                     HRService hr= new HRService();
-                                                    for(Venta comp: hr.Ventas() ){
+                                                    for(DetalleVenta comp: hr.DetalleVenta(id) ){
                                                 %>
 						<tr>
 							<td class="cart_description">
 								<h4><%=i %></h4>
 							</td>
+							<td class="cart_product">
+                                                            <a href=""><img src="../recursos/imagenes/productos/<%= comp.getImagen()%>" alt="" width="120"></a>
+							</td>
+							<td class="cart_description">
+								<h4><%= comp.getNomprod() %></h4>
+							</td>
 							<td class="cart_price">
-								<p><%= comp.getUsuario()%></p>
+								<p>S/<%= comp.getPrecio()%></p>
 							</td>
 							<td class="cart_quantity">
-                                                                <p><%= comp.getFecha()%></p>
+                                                                <p><%= comp.getCant()%></p>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">S/<%= comp.getTotal() %></p>
+								<p class="cart_total_price">S/<%= comp.getSubtotal() %></p>
 							</td>
-                                                        <td>
-                                                            <a href="detalle_venta.jsp?comp=<%= comp.getId() %>" class="btn btn-success" style="margin-left: 33px;">Detalle</a>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                 </tr>

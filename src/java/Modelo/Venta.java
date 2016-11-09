@@ -1,16 +1,21 @@
 
 package Modelo;
+
+
 public class Venta {
+    private int id;
     private String usuario;
     private Double total;
-
+    private String fecha;
     public Venta(){
         
     }
     
-    public Venta(String usuario,Double total){
+    public Venta(int id,String usuario,Double total,String fecha){
+        this.id = id;
         this.usuario = usuario;
         this.total = total;
+        this.fecha = fecha;
     }
     /**
      * @return the usuario
@@ -38,5 +43,33 @@ public class Venta {
      */
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public String getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }
