@@ -35,7 +35,7 @@ public class HRService {
             ResultSet rs = cst.executeQuery();
             
             while(rs.next()){
-                usu.setUsuario(rs.getString("Usuario")); 
+                usu.setUsuario(rs.getString("Cod_Usuario")); 
                 usu.setPwd(rs.getString("Password"));
                 usu.setTipo(rs.getString("Tipo"));
             }
@@ -292,9 +292,9 @@ public class HRService {
              Vector<Producto> vecPro=new Vector<Producto>();
              String sql;
              if(cat == "0"){
-             sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id";
+             sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = d.Categoria_id";
              }else{
-             sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id AND d.Categoria_id = '"+ cat +"'";        
+             sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = d.Categoria_id AND d.Categoria_id = '"+ cat +"'";        
              }
              try{
             pr=conex.prepareStatement(sql);
@@ -330,7 +330,7 @@ public class HRService {
     } 
     public Vector<Producto> Producto1(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 1 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 1 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -365,7 +365,7 @@ public class HRService {
     }
       public Vector<Producto> Producto2(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 2 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 2 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -401,7 +401,7 @@ public class HRService {
      
     public Vector<Producto> Producto3(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 3 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 3 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -437,7 +437,7 @@ public class HRService {
     
     public Vector<Producto> Producto4(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 4 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 4 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -473,7 +473,7 @@ public class HRService {
     
     public Vector<Producto> Producto5(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 5 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 5 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -509,7 +509,7 @@ public class HRService {
     
     public Vector<Producto> Producto6(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 6 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 6 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -545,7 +545,7 @@ public class HRService {
     
     public Vector<Producto> Producto7(){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.categoria = 7 AND a.Categoria = d.Categoria_id";
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 7 AND a.Categoria_id = d.Categoria_id";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -583,10 +583,10 @@ public class HRService {
       
     public Vector<Producto> DetalleProducto(String modelo){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio',"
-                     + " a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',"
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio',"
+                     + " a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',"
                      + "c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,"
-                     + "modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id "
+                     + "modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = d.Categoria_id "
                      + "AND c.nom_modelo ='"+ modelo+"'";
         try{
             pr=conex.prepareStatement(sql);
@@ -620,7 +620,34 @@ public class HRService {
         }
         return vecPro;
     } 
-    public Vector<ContenidoWeb> MostrarContenido(String id){
+    public Vector<ContenidoWeb> MostrarContenido(String id,String usuario){
+             Vector<ContenidoWeb> vecWeb=new Vector<ContenidoWeb>();
+             String sql="SELECT * FROM contenido_web WHERE Nom_Pagina = '"+ id +"' AND Cod_Usuario = '"+ usuario +"'";
+        try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                ContenidoWeb web = new ContenidoWeb(rs.getString("Id"),rs.getString("Nom_Pagina"),rs.getString("Contenido"));
+                web.setId(rs.getString("Id"));
+                web.setNompagina(rs.getString("Nom_Pagina"));
+                web.setContenido(rs.getString("Contenido"));
+                vecWeb.add(web);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecWeb;
+    }
+    
+    public Vector<ContenidoWeb> MostrarNosotros(String id,String usuario){
              Vector<ContenidoWeb> vecWeb=new Vector<ContenidoWeb>();
              String sql="SELECT * FROM contenido_web WHERE Id = '"+ id +"'";
         try{
@@ -704,7 +731,7 @@ public class HRService {
              String sql;
              Producto producto = null;
              try{
-                sql="SELECT a.id as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.categoria as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_modelo = '" + modelo + "' AND a.Id_marca = b.Id_marca AND a.Categoria = d.Categoria_id";
+                sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_modelo = '" + modelo + "' AND a.Id_marca = b.Id_marca AND a.Categoria_id = d.Categoria_id";
                 pr=conex.prepareStatement(sql);
                 rs=pr.executeQuery();
                 while(rs.next()){
@@ -745,7 +772,7 @@ public class HRService {
       
     public Vector<Miscompras> MisCompras(String usuario){
         Vector<Miscompras> vecComp=new Vector<Miscompras>();
-        String sql="SELECT a.imagen,a.nombre,b.Precio,b.Cantidad,b.SubTotal FROM productos a,detalle_venta b,usuario c WHERE a.id = b.Id_Producto AND a.precio = b.Precio AND c.Usuario = b.Cod_Usuario AND c.Usuario = '" + usuario +"'";
+        String sql="SELECT a.imagen,a.nombre,b.Precio,b.Cantidad,b.SubTotal FROM productos a,detalle_venta b,usuario c WHERE a.Id_producto = b.Id_producto AND a.precio = b.Precio  AND c.Cod_Usuario = '" + usuario +"'";
     try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -774,7 +801,7 @@ public class HRService {
     
         public Vector<Venta> Ventas(){
         Vector<Venta> vecV=new Vector<Venta>();
-        String sql="SELECT CONCAT(b.Nombre, ' ' ,b.Apellido_Paterno,' ' ,b.Apellido_Materno) as 'Cod',a.Total,a.Fecha,a.Num_V FROM venta a, usuario b WHERE b.Usuario = a.Cod ";
+        String sql="SELECT CONCAT(b.Nombre, ' ' ,b.Apellido_Paterno,' ' ,b.Apellido_Materno) as 'Cod',a.Total,a.Fecha ,a.Num_V FROM venta a, usuario b WHERE b.Cod_Usuario = a.Cod_Usuario AND  a.Fecha IS NOT NULL";
     try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -828,7 +855,7 @@ public class HRService {
      public Vector<DetalleVenta> DetalleVenta(String id){
         Vector<DetalleVenta> vecV=new Vector<DetalleVenta>();
         String sql="SELECT DISTINCT b.nombre as nom,b.imagen as img,b.Precio as precio,a.Cantidad as cant,a.SubTotal as subt FROM dbcmsproductos.detalle_venta a ,productos b,usuario c\n" +
-        "WHERE Num_V = '" + id + "' AND b.id = a.Id_Producto";
+        "WHERE Num_V = '" + id + "' AND b.id_producto = a.Id_producto";
     try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();

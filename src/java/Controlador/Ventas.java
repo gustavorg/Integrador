@@ -70,8 +70,7 @@ private void RegistrarVenta(HttpServletRequest request, HttpServletResponse resp
         v.setTotal(Double.parseDouble(request.getParameter("total")));
       
         HRService hr = new HRService();
-        boolean resp = hr.insertarVenta(v);
-        
+        boolean resp = hr.insertarVenta(v); 
          
         if(resp){
             // Regostrar detalle vemta
@@ -82,7 +81,7 @@ private void RegistrarVenta(HttpServletRequest request, HttpServletResponse resp
             String Usuario[] = request.getParameterValues("user");
             String id[] = request.getParameterValues("IdVenta");
 
-      
+      out.print(id);
             for(int i=0; i<IdProducto.length;i++){
                 try{
                     cst = conex.prepareCall("CALL REGISTRAR_DETALLE_VENTA (?,?,?,?,?,?)");

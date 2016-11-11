@@ -48,9 +48,9 @@
                         <ul class="nav navbar-nav">
                             <%
                                 HRService pag = new HRService();
-                                for(Pagina info: pag.InfoPag()){ 
+                                for(ContenidoWeb cw: pag.MostrarContenido("inicion","lizardo2016")){ 
                             %>
-                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
+                            <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
                             %>
                         </ul>
@@ -113,13 +113,13 @@
         <main>
             <p>Bienvenido ${sessionScope.user}</p>
             <% HRService hr = new HRService();
-                for(ContenidoWeb web: hr.MostrarContenido("PORTADA")){ %>
+                for(ContenidoWeb web: hr.MostrarNosotros("PORTADA","lizardo2016")){ %>
             <div class="row">
                 <img src="recursos/imagenes/nosotros/<%=web.getContenido()%>" class="img-responsive" alt="Responsive image">
             </div><br>
              <% }
                 HRService h = new HRService();
-                for(ContenidoWeb web: h.MostrarContenido("MISION")){ %>
+                for(ContenidoWeb web: h.MostrarNosotros("MISION","lizardo2016")){ %>
             <div class="row">
                 <div class="col-md-4">
                     <img src="recursos/imagenes/nosotros/MISION.jpg" class="img-responsive" alt="Responsive image">
@@ -131,7 +131,7 @@
             </div>
             <% } 
                 HRService d = new HRService();
-                for(ContenidoWeb web: d.MostrarContenido("VISION")){ %>
+                for(ContenidoWeb web: d.MostrarNosotros("VISION","lizardo2016")){ %>
                 <div class="row">
                 <div class="col-md-8">
                     <h1>Vision</h1>

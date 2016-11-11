@@ -52,9 +52,9 @@
                         <ul class="nav navbar-nav">
                             <%
                                 HRService pag = new HRService();
-                                for(Pagina info: pag.InfoPag()){ 
+                                for(ContenidoWeb cw: pag.MostrarContenido("inicion","lizardo2016")){ 
                             %>
-                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
+                            <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
                             %>
                         </ul>
@@ -135,11 +135,8 @@
                                                     double total = 0;
                                                     HRService h = new HRService();
                                                      String id = h.IdVenta();
-                                                     if(id == ""){
-                                                         id = "1";
-                                                     }else if(id == "1"){
-                                                         id = "2";
-                                                     }
+                                                     int i = Integer.parseInt(id) + 1;
+                                                     
                                                     if(articulos != null){
                                                     for(Articulo a: articulos){
                                                         Producto producto = pro.getProducto(a.getIdProducto());
@@ -179,7 +176,7 @@
 						</tr>
                                                 <tr>
                                                 </tr>
-                                                <input type="hidden" name="IdVenta" value=<%=id %>>
+                                                <input type="hidden" name="IdVenta" value=<%=i %>>
                                                 <input type="hidden" name="user" value=${sessionScope.user} >
                                                 <%}}%>
 					</tbody>

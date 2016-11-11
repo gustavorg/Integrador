@@ -1,3 +1,4 @@
+<%@page import="Modelo.ContenidoWeb"%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.HRService"%>
@@ -53,10 +54,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
                         <ul class="nav navbar-nav">
-                            <%
-                                for(Modelo.Pagina info: pag.InfoPag()){ 
+                             <%
+                                HRService i = new HRService();
+                                for(ContenidoWeb cw: i.MostrarContenido("inicion","lizardo2016")){ 
                             %>
-                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
+                            <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
                             %>
                         </ul>

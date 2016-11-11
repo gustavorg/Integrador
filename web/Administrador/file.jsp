@@ -40,21 +40,13 @@
         
             String cod = request.getParameter("cod"); 
             out.print(cod);
-            String nom ="";
-                    if(cod != "carrousel2" && cod != "carrousel3"){
-                nom = "\\c1.jpg";
-            }else if("carrousel2".equals(cod)){
-                nom = "\\c2.jpg";
-            }else if("carrousel3".equals(cod)){
-                nom = "\\c3.jpg";
-            }
         try{
 
             List<FileItem> partes = upload.parseRequest(request);
             for(FileItem items: partes){
             File file = new File(archivourl,items.getName());
             String ruta = archivourl + "\\"+  items.getName();
-            String ruta2 = archivourl + nom;
+            String ruta2 = archivourl + "\\carrousel1.jpg";
                 if(ruta != ruta2){
                 File file2 = new File(ruta2);
                 file2.delete();
@@ -63,10 +55,10 @@
                 File archivo=new File(ruta);
                 archivo.renameTo(new File(ruta2));
              }
-      //        response.sendRedirect("Paginas/inicio.jsp");
+       response.sendRedirect("Paginas/inicio.jsp");
               }catch(Exception e){
             out.print("ERROR "+e.getMessage()+"");
-    //response.sendRedirect("Paginas/inicio.jsp");
+    response.sendRedirect("Paginas/inicio.jsp");
         }
         
         

@@ -48,9 +48,9 @@
                         <ul class="nav navbar-nav">
                             <%
                                 HRService pag = new HRService();
-                                for(Pagina info: pag.InfoPag()){ 
+                                for(ContenidoWeb cw: pag.MostrarContenido("inicion","lizardo2016")){ 
                             %>
-                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
+                            <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
                             %>
                         </ul>

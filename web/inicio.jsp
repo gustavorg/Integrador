@@ -49,9 +49,9 @@
                         <ul class="nav navbar-nav">
                             <%
                                 HRService pag = new HRService();
-                                for(Pagina info: pag.InfoPag()){ 
+                                for(ContenidoWeb cw: pag.MostrarContenido("inicion","lizardo2016")){ 
                             %>
-                            <li><a href="<%=info.getNompagina()%>.jsp"><%=info.getTitulo()%></a></li>
+                            <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
                             %>
                         </ul>
@@ -121,7 +121,7 @@
 
                   <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="width: 58%;margin-left: 22%;">
+                      <img src="recursos/imagenes/index/carrousel1.jpg" alt="..." style="width: 58%;margin-left: 22%;">
                     </div>
                   <% 
                       HRService hr = new HRService();
