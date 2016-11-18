@@ -2,9 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.*"%>
 <%@page import="java.io.File"%>
-<%   
-   HRService x = new HRService();
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inicio</title>
+        <title>Nosotros</title>
         <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
         <link href="recursos/css/estilo.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -28,11 +25,23 @@
              };
         </script>
     </head>
+        <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
+       HRService c = new HRService(); String tipol = c.general("tipoletra");
+       HRService u = new HRService(); String sizel = u.general("tamañoletra");
+       HRService z = new HRService(); String colorl = z.general("colorletra");
+    %>
+    <style>
+        body{
+            background-color:"<%=fondo%> !important";
+            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
+            font-size: "<%=sizel%>px";
+            color: "<%=colorl%>";
+        }
+    </style>
     <body>
         <header>
             <nav class="navbar navbar-default">
               <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -41,8 +50,6 @@
                     <span class="icon-bar"></span>
                   </button>
                 </div>
-                
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
                         <ul class="nav navbar-nav">
@@ -62,9 +69,7 @@
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
                             <li class="dropdown" id="useractive">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="
-    margin-right: -21px !important;
-"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
                                       <li><a href="perfil.jsp">Mi Perfil</a></li>
                                       <li><a href="miscompras.jsp">Mis Compras</a></li>
@@ -101,9 +106,7 @@
                                    </div>
                                   </div>
                                 </div>
-<li id="carrito"><a href="carrito.jsp" style="
-    margin-top: -15px;
-"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                            <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -116,38 +119,59 @@
                 for(ContenidoWeb web: hr.MostrarNosotros("PORTADA","lizardo2016")){ %>
             <div class="row">
                 <img src="recursos/imagenes/nosotros/<%=web.getContenido()%>" class="img-responsive" alt="Responsive image">
-            </div><br>
+            </div>
              <% }
                 HRService h = new HRService();
                 for(ContenidoWeb web: h.MostrarNosotros("MISION","lizardo2016")){ %>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="recursos/imagenes/nosotros/MISION.jpg" class="img-responsive" alt="Responsive image">
+            <div class="container">
+                <div class="panel panel-default" style="margin-top: 18px;">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="recursos/imagenes/nosotros/MISION.jpg" class="img-responsive" alt="Responsive image">
+                            </div>
+                            <div class="col-md-8">
+                                <h1>Mision</h1>
+                                <p><%=web.getContenido()%></p>
+                            </div> 
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <h1>Mision</h1>
-                    <p><%=web.getContenido()%></p>
-                </div> 
-            </div>
-            <% } 
-                HRService d = new HRService();
-                for(ContenidoWeb web: d.MostrarNosotros("VISION","lizardo2016")){ %>
-                <div class="row">
-                <div class="col-md-8">
-                    <h1>Vision</h1>
-                    <p><%=web.getContenido()%></p>
+
+                <% } 
+                    HRService d = new HRService();
+                    for(ContenidoWeb web: d.MostrarNosotros("VISION","lizardo2016")){ %>
+                <div class="panel panel-default">
+                    <div class="panel-body">   
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1>Vision</h1>
+                                <p><%=web.getContenido()%></p>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="recursos/imagenes/nosotros/VISION.jpg" class="img-responsive" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="recursos/imagenes/nosotros/VISION.jpg" class="img-responsive" alt="Responsive image">
+                <% }
+                    HRService df = new HRService();
+                    for(ContenidoWeb web: df.MostrarNosotros("UBICACION","lizardo2016")){ %>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h1>Ubicanos en..</h1>
+                                <img src="recursos/imagenes/nosotros/ubicanos.png" class="img-responsive" alt="Responsive image">
+                            </div>
+                            <div class="col-md-8">
+                                 <%=web.getContenido()%>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
                  <% } %>
-            <div class="row">
-                <div class="container">
-                    <h3>Ubicanos</h3>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d975.4213750774521!2d-77.036809038414!3d-12.06514662281234!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1478493689788" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div></div>
-           
         </main>
     <footer class="footer">
       <div class="container">

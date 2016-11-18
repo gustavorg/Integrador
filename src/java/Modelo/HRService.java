@@ -27,7 +27,7 @@ public class HRService {
          Conexion cn = new Conexion();
          Connection conex = cn.MySQLConnect();
          
- public  Usuario VerificarUsuario(String usuario){
+    public  Usuario VerificarUsuario(String usuario){
         Usuario usu = new Usuario();
         try{
             cst = conex.prepareCall("CALL LOGEAR_USUARIO (?)");
@@ -41,11 +41,7 @@ public class HRService {
             }
         }catch(Exception e){System.out.println(e);}
         return usu;
-    }  
-         
-         
-  //SELECT * FROM usuario WHERE Usuario = '" + usuario + "' AND Password = '"+ password + "'
-             
+    }             
     public Vector<Pagina> InfoPag(){
              Vector<Pagina> vecPag=new Vector<Pagina>();
              String sql="SELECT * FROM pagina";
@@ -98,172 +94,9 @@ public class HRService {
         return vecCat;
     }
     
-    public Vector<Categoria> Categoria1(){
+    public Vector<Categoria> CategoriaNom(int id){
              Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 1";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    public Vector<Categoria> Categoria2(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 2";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    
-    public Vector<Categoria> Categoria3(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 3";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    public Vector<Categoria> Categoria4(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 4";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    public Vector<Categoria> Categoria5(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 5";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    public Vector<Categoria> Categoria6(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 6";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Categoria ca = new Categoria(rs.getInt("Categoria_id"),rs.getString("Nombre"),rs.getString("Descripcion"));
-                ca.setId(rs.getInt("Categoria_id"));
-                ca.setNom(rs.getString("Nombre"));
-                ca.setDesc(rs.getString("Descripcion"));
-                vecCat.add(ca);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecCat;
-    }
-    
-    public Vector<Categoria> Categoria7(){
-             Vector<Categoria> vecCat=new Vector<Categoria>();
-             String sql="SELECT * FROM categoria WHERE Categoria_id = 7";
+             String sql="SELECT * FROM categoria WHERE Categoria_id = '" + id +"'";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -328,26 +161,26 @@ public class HRService {
         }
         return vecPro;
     } 
-    public Vector<Producto> Producto1(){
+    public Vector<Producto> ProductoMasVendidos(int id){
              Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 1 AND a.Categoria_id = d.Categoria_id";
+             String sql="SELECT COUNT(b.Id_producto) as c,b.Id_producto,a.nombre as nom,a.descripción as descr,a.imagen as imagen,d.Nom_modelo as nommodelo,a.precio as precio FROM productos a,detalle_venta b,categoria c,modelo d WHERE a.Id_producto = b.Id_producto AND a.Id_modelo = d.Id_modelo AND c.Categoria_id = a.Categoria_id AND c.Categoria_id = '" + id +"' GROUP BY a.Id_producto ORDER BY c DESC LIMIT 4";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
             while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
+                Producto pro = new Producto(null,rs.getString("nom"),rs.getString("descr"),rs.getString("imagen"),rs.getDouble("precio"),null,null,null,null,null,rs.getString("nommodelo"),null);
+                pro.setId(null);
                 pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
+                pro.setDescripcion(rs.getString("descr"));
                 pro.setImagen(rs.getString("imagen"));
                 pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
+                pro.setCategoria(null);
+                pro.setStock(null);
+                pro.setId_marca(null);
+                pro.setId_modelo(null);
+                pro.setNom_marca(null);
                 pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
+                pro.setNom_categoria(null);
                 vecPro.add(pro);
             }
         }catch(Exception ex){
@@ -363,223 +196,6 @@ public class HRService {
         }
         return vecPro;
     }
-      public Vector<Producto> Producto2(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 2 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-     
-    public Vector<Producto> Producto3(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 3 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-    
-    public Vector<Producto> Producto4(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 4 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-    
-    public Vector<Producto> Producto5(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 5 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-    
-    public Vector<Producto> Producto6(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 6 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-    
-    public Vector<Producto> Producto7(){
-             Vector<Producto> vecPro=new Vector<Producto>();
-             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio', a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = 7 AND a.Categoria_id = d.Categoria_id";
-        try{
-            pr=conex.prepareStatement(sql);
-            rs=pr.executeQuery();
-            while(rs.next()){
-                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
-                pro.setId(rs.getInt("id"));
-                pro.setNombre(rs.getString("nom"));
-                pro.setDescripcion(rs.getString("desc"));
-                pro.setImagen(rs.getString("imagen"));
-                pro.setPrecio(rs.getDouble("precio"));
-                pro.setCategoria(rs.getInt("categoria"));
-                pro.setStock(rs.getInt("stock"));
-                pro.setId_marca(rs.getInt("idmarca"));
-                pro.setId_modelo(rs.getInt("idmodelo"));
-                pro.setNom_marca(rs.getString("nommarca"));
-                pro.setNom_modelo(rs.getString("nommodelo"));
-                pro.setNom_categoria(rs.getString("nomcate"));
-                vecPro.add(pro);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }finally{
-            try{
-                rs.close();
-                pr.close();
-                conex.close();
-            }catch(Exception ex){
-
-            }
-        }
-        return vecPro;
-    }
-      
-      
       
     public Vector<Producto> DetalleProducto(String modelo){
              Vector<Producto> vecPro=new Vector<Producto>();
@@ -649,7 +265,7 @@ public class HRService {
     
     public Vector<ContenidoWeb> MostrarNosotros(String id,String usuario){
              Vector<ContenidoWeb> vecWeb=new Vector<ContenidoWeb>();
-             String sql="SELECT * FROM contenido_web WHERE Id = '"+ id +"'";
+             String sql="SELECT * FROM contenido_web WHERE Id = '"+ id +"' AND Cod_Usuario = '"+ usuario +"'";
         try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -881,4 +497,68 @@ public class HRService {
         }
         return vecV;
     }
+     
+      public void ActualizarNosotros(String usuario,String id,String contenido){
+    try{
+            pr = conex.prepareStatement(
+              "UPDATE contenido_web SET Contenido = ? WHERE Cod_Usuario = ? AND Id = ? ");
+
+            // set the preparedstatement parameters
+            pr.setString(1,contenido);
+            pr.setString(2,usuario);
+            pr.setString(3,id);
+
+            // call executeUpdate to execute our sql update statement
+            pr.executeUpdate();
+            pr.close(); 
+        }catch(Exception e){System.out.println(e);}finally{
+            try{
+                stm.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+    }
+    
+      public String general(String id){
+            String sql ="SELECT * FROM contenido_web WHERE Id = '"+ id +"'";
+            String contenido = "";
+            try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                contenido = rs.getString("Contenido");
+            } 
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+            return contenido;
+        }
+      public void ActualizarGeneral(String nompag,String colorfondo,String colorletra,String tamanoletra,String tipoletra){
+          try{
+            cst = conex.prepareCall("CALL UPDATE_GENERAL (?,?,?,?,?)");
+            cst.setString(1, nompag);
+            cst.setString(2, colorfondo);
+            cst.setString(3, colorletra);
+            cst.setString(4, tamanoletra);
+            cst.setString(5, tipoletra);
+            cst.executeQuery();
+        }catch(Exception e){System.out.println(e);}finally{
+            try{
+                cst.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+      }
 }

@@ -29,6 +29,19 @@
              };
         </script>
     </head>
+    <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
+       HRService c = new HRService(); String tipol = c.general("tipoletra");
+       HRService u = new HRService(); String sizel = u.general("tamañoletra");
+       HRService z = new HRService(); String colorl = z.general("colorletra");
+    %>
+    <style>
+        body{
+            background-color:"<%=fondo%> !important";
+            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
+            font-size: "<%=sizel%>px";
+            color: "<%=colorl%>";
+        }
+    </style>
     <body>
         <header>
             <nav class="navbar navbar-default">
@@ -121,7 +134,7 @@
 
                   <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                      <img src="recursos/imagenes/index/carrousel1.jpg" alt="..." style="width: 58%;margin-left: 22%;">
+                      <img src="recursos/imagenes/index/c1.jpg" alt="..." style="width: 58%;margin-left: 22%;">
                     </div>
                   <% 
                       HRService hr = new HRService();
@@ -143,14 +156,14 @@
 </div>
         <div class="row">
             <% HRService pr = new HRService();
-                for(Categoria cat: pr.Categoria1()){ %>
+                for(Categoria cat: pr.CategoriaNom(1)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                     <% HRService p = new HRService();
-                        for(Producto pro: p.Producto1()){ %> 
+                        for(Producto pro: p.ProductoMasVendidos(1)){ %> 
                     <div class="col-sm-6 col-md-3">
                       <div class="thumbnail">
                         <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="...">
@@ -164,14 +177,14 @@
                     <%  }  %>
                 </div>
             <% HRService a = new HRService();
-                for(Categoria cat: a.Categoria2()){ %>
+                for(Categoria cat: a.CategoriaNom(2)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService b = new HRService();
-                for(Producto pro: b.Producto2()){ %> 
+                for(Producto pro: b.ProductoMasVendidos(2)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
@@ -185,14 +198,14 @@
       
             </div>        <%  }  %></div>
              <% HRService k = new HRService();
-                for(Categoria cat: k.Categoria3()){ %>
+                for(Categoria cat: k.CategoriaNom(3)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService v = new HRService();
-                for(Producto pro: v.Producto3()){ %> 
+                for(Producto pro: v.ProductoMasVendidos(3)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
@@ -206,14 +219,14 @@
       
             </div>        <%  }  %></div>
              <% HRService m = new HRService();
-                for(Categoria cat: m.Categoria4()){ %>
+                for(Categoria cat: m.CategoriaNom(4)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService y = new HRService();
-                for(Producto pro: y.Producto4()){ %> 
+                for(Producto pro: y.ProductoMasVendidos(4)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
@@ -227,14 +240,14 @@
       
             </div>        <%  }  %></div>
              <% HRService j = new HRService();
-                for(Categoria cat: j.Categoria5()){ %>
+                for(Categoria cat: j.CategoriaNom(5)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService d = new HRService();
-                for(Producto pro: d.Producto5()){ %> 
+                for(Producto pro: d.ProductoMasVendidos(5)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
@@ -248,14 +261,14 @@
       
             </div>        <%  }  %></div>
              <% HRService g = new HRService();
-                for(Categoria cat: g.Categoria6()){ %>
+                for(Categoria cat: g.CategoriaNom(6)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService h = new HRService();
-                for(Producto pro: h.Producto6()){ %> 
+                for(Producto pro: h.ProductoMasVendidos(6)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">
@@ -269,14 +282,14 @@
       
             </div>        <%  }  %></div>
              <% HRService e = new HRService();
-                for(Categoria cat: e.Categoria7()){ %>
+                for(Categoria cat: e.CategoriaNom(7)){ %>
             <h1>
                 <%=cat.getNom()%>
             </h1>
                 <% }%>
                 <div class="row">
                  <% HRService f = new HRService();
-                for(Producto pro: f.Producto7()){ %> 
+                for(Producto pro: f.ProductoMasVendidos(7)){ %> 
             <div class="col-sm-6 col-md-3">
  
               <div class="thumbnail">

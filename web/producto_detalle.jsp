@@ -35,6 +35,19 @@
    
         </script>
     </head>
+    <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
+       HRService c = new HRService(); String tipol = c.general("tipoletra");
+       HRService u = new HRService(); String sizel = u.general("tamañoletra");
+       HRService z = new HRService(); String colorl = z.general("colorletra");
+    %>
+    <style>
+        body{
+            background-color:"<%=fondo%> !important";
+            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
+            font-size: "<%=sizel%>px";
+            color: "<%=colorl%>";
+        }
+    </style>
     <body>
         <header>
             <nav class="navbar navbar-default">

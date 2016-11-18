@@ -55,38 +55,45 @@ public class imagenes extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(factory);
                         String cod = ""; 
 
-
+PrintWriter out = response.getWriter();
 
         try{
 
             String nom ="";
             List<FileItem> partes = upload.parseRequest(request);
-
-             
-            if(!"carrousel2".equals(cod) && !"carrousel3".equals(cod)){
+            Iterator<FileItem> it = partes.iterator();
+            FileItem fileItem = it.next();
+            if("txtImagen1".equals(fileItem.getFieldName())){
                 nom = "\\c1.jpg";
-            }else if("carrousel2".equals(cod)){
-                nom = "\\c2.jpg";
-            }else if("carrousel3".equals(cod)){
-                nom = "\\c3.jpg";
+            }else if("txtImagen2".equals(fileItem.getFieldName())){
+                nom = "\\ca2.jpg";
+            }else if("txtImagen3".equals(fileItem.getFieldName())){
+                nom = "\\ca3.jpg";
+            }else if("txtImagenn".equals(fileItem.getFieldName())){
+                archivourl = "D:\\Carlos Iván\\Desktop\\CMSProductos\\web\\recursos\\imagenes\\nosotros";
+                nom = "\\portada.jpg";
             }
-            
-            
-            
-            
+            out.print(fileItem.getFieldName());
             for(FileItem items: partes){
             File file = new File(archivourl,items.getName());
             String ruta = archivourl + "\\"+  items.getName();
             String ruta2 = archivourl + nom;
+            out.println(ruta);
+            // verificar si existe el nombre y borrarlo
                 if(ruta == null ? ruta2 != null : !ruta.equals(ruta2)){
                 File file2 = new File(ruta2);
                 file2.delete();
                 }
+            //  cambiar el nombre del archivo    
                 items.write(file);
                 File archivo=new File(ruta);
                 archivo.renameTo(new File(ruta2));
+
              }
-        //      response.sendRedirect("Administrador/Paginas/inicio.jsp");
+            if(nom == "\\portada.jpg"){
+                response.sendRedirect("Administrador/Paginas/nosotros.jsp");
+            }else
+          response.sendRedirect("Administrador/Paginas/inicio.jsp");
               }catch(Exception e){
             out.print("ERROR "+e.getMessage()+"");
     //response.sendRedirect("Administrador/Paginas/inicio.jsp");

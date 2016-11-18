@@ -19,15 +19,16 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="index.jsp">Inicio</a></li>
-                    <li role="presentation"><a href="productos.jsp">Productos</a></li>
-                    <li role="presentation"><a href="ventas.jsp">Ventas</a></li>
+                    <li role="presentation"><a href="../index.jsp">Inicio</a></li>
+                    <li role="presentation"><a href="../productos.jsp">Productos</a></li>
+                    <li role="presentation"><a href="../ventas.jsp">Ventas</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" role="presentation" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Editar Paginas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="inicio.jsp">Inicio</a></li>
-                          <li><a href="productos.jsp">Productos</a></li>
+                          <li><a href="#">Inicio</a></li>
                           <li><a href="nosotros.jsp">Nosotros</a></li>
+                          <li><a href="productos.jsp">Productos</a></li>
+                          <li><a href="general.jsp">General</a></li>
                         </ul>
                     </li>
                    <li><a href="../validacion?accion=logout&pag=">Cerrar Sesion</a></li>
@@ -36,45 +37,48 @@
             <div class="col-md-8">
                 <h3><span class="label label-default">Carrousel </span></h3>
                 <h5>Recomendacion Subir Imagenes (2000x960) pixeles </h5>
-                <form action="../file.jsp" method="POST" enctype="multipart/form-data">
-                    <h4>Imagen 1</h4>
+                <form action="../../imagenes" method="POST" enctype="multipart/form-data">
                     <table>
                         <tr>
+                                <label>Imagen 1</label>
                             <td>
-                                <input type="file" name="txtImagen" size="30" id="txtImagen" >
+                                <input type="file" name="txtImagen1" size="30" id="txtImagen1" >
                             </td>
+                            <br>
                             <td>      
                                 <input type="submit" class="btn btn-primary" value="Guardar" style="margin-left: 22px;">
                             </td>
                         </tr>
                     </table>
-               </form> 
-                <br>
-                        <%  int i = 2;
-                                    HRService h = new HRService();
-                              for(ContenidoWeb w: h.MostrarCarrousel("inicio")){ %>
-
-                <form action="../../imagenes" method="POST" enctype="multipart/form-data">
-                    <h4>Imagen <%=i%></h4>
+                </form>
+                                <form action="../../imagenes" method="POST" enctype="multipart/form-data">
                     <table>
                         <tr>
+                                <label>Imagen 2</label>
                             <td>
-                                <input type="file" name="txtImagen" size="30" id="txtImagen">
+                                <input type="file" name="txtImagen2" size="30" id="txtImagen2" >
                             </td>
-                            <td>
-                               
-                            </td>
-                            <td>
-                                 <input type="hidden" name="cod" value="<%=w.getId()%>" >
+                            <br>
+                            <td>      
                                 <input type="submit" class="btn btn-primary" value="Guardar" style="margin-left: 22px;">
                             </td>
                         </tr>
                     </table>
-                </form> 
-                              <br>
-                     <% i++; } %>
-                
-        </div>
-       
+                </form>  
+                                <form action="../../imagenes" method="POST" enctype="multipart/form-data">
+                    <table>
+                        <tr>
+                                <label>Imagen 3</label>
+                            <td>
+                                <input type="file" name="txtImagen3" size="30" id="txtImagen3" >
+                            </td>
+                            <br>
+                            <td>      
+                                <input type="submit" class="btn btn-primary" value="Guardar" style="margin-left: 22px;">
+                            </td>
+                        </tr>
+                    </table>
+                </form>  
+            </div>
     </body>
 </html>
