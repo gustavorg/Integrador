@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
-
 import Clases.Producto;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -543,14 +537,16 @@ public class HRService {
         }
             return contenido;
         }
-      public void ActualizarGeneral(String nompag,String colorfondo,String colorletra,String tamanoletra,String tipoletra){
+      public void ActualizarGeneral(String nompag,String colorfondo,String colorletra,String tamanoletra,String tipoletra,String cmfondo,String cmletra){
           try{
-            cst = conex.prepareCall("CALL UPDATE_GENERAL (?,?,?,?,?)");
+            cst = conex.prepareCall("CALL UPDATE_GENERAL (?,?,?,?,?,?,?)");
             cst.setString(1, nompag);
             cst.setString(2, colorfondo);
             cst.setString(3, colorletra);
             cst.setString(4, tamanoletra);
             cst.setString(5, tipoletra);
+            cst.setString(6, cmfondo);
+            cst.setString(7, cmletra);
             cst.executeQuery();
         }catch(Exception e){System.out.println(e);}finally{
             try{
@@ -561,4 +557,44 @@ public class HRService {
             }
         }
       }
+      
+      public Vector<Producto> BuscarProducto(String search){
+             Vector<Producto> vecPro=new Vector<Producto>();
+             String sql="SELECT a.Id_producto as 'id',a.nombre as 'nom',a.descripción as 'desc',a.imagen as 'imagen',a.precio as 'precio',"
+                     + " a.Categoria_id as 'categoria',a.stock as 'stock',a.Id_marca as 'idmarca',a.Id_modelo as 'idmodelo',"
+                     + "c.nom_modelo as'nommodelo', b.nom_marca as 'nommarca',d.Nombre as 'nomcate' FROM productos a,marca b,"
+                     + "modelo c,categoria d  WHERE a.Id_modelo = c.Id_modelo AND a.Id_marca = b.Id_marca AND a.Categoria_id = d.Categoria_id "
+                     + "AND c.nom_modelo LIKE '"+ search +"%' ";
+        try{
+            pr=conex.prepareStatement(sql);
+            rs=pr.executeQuery();
+            while(rs.next()){
+                Producto pro = new Producto(rs.getInt("id"),rs.getString("nom"),rs.getString("desc"),rs.getString("imagen"),rs.getDouble("precio"),rs.getInt("categoria"),rs.getInt("stock"),rs.getInt("idmarca"),rs.getInt("idmodelo"),rs.getString("nommarca"),rs.getString("nommodelo"),rs.getString("nomcate"));
+                pro.setId(rs.getInt("id"));
+                pro.setNombre(rs.getString("nom"));
+                pro.setDescripcion(rs.getString("desc"));
+                pro.setImagen(rs.getString("imagen"));
+                pro.setPrecio(rs.getDouble("precio"));
+                pro.setCategoria(rs.getInt("categoria"));
+                pro.setStock(rs.getInt("stock"));
+                pro.setId_marca(rs.getInt("idmarca"));
+                pro.setId_modelo(rs.getInt("idmodelo"));
+                pro.setNom_marca(rs.getString("nommarca"));
+                pro.setNom_modelo(rs.getString("nommodelo"));
+                pro.setNom_categoria(rs.getString("nomcate"));
+                vecPro.add(pro);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                rs.close();
+                pr.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+        return vecPro;
+    } 
 }

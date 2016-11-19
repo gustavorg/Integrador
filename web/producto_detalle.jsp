@@ -24,11 +24,15 @@
                 <script>
             window.onload = function(){
                 $('#useractive').hide();
-                $('#añadir').attr("disabled", true);
-                if($('#user').data('id') != ""){
+                $('#añadir').hide();
+                $('#userr').show();
+               // $('#añadir').attr("disabled", true);
+                if($('#user').data('id') != "" || $('#btnuserr').data('id') != ""){
                     $('#useractive').show();
                     $('#user').hide();
-                    $('#añadir').attr("disabled", false);
+                    $('#añadir').show();
+                    $('#btnuserr').hide();
+                 //   $('#añadir').attr("disabled", false);
                }
              };
               
@@ -42,10 +46,10 @@
     %>
     <style>
         body{
-            background-color:"<%=fondo%> !important";
-            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
-            font-size: "<%=sizel%>px";
-            color: "<%=colorl%>";
+            background-color:<%=fondo%> !important;
+            font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
+            font-size: <%=sizel%>px;
+            color: <%=colorl%>;
         }
     </style>
     <body>
@@ -75,16 +79,14 @@
                             %>
                         </ul>
                                                <ul class="nav navbar-nav navbar-right">
-                          <form class="navbar-form navbar-left">
+                          <form class="navbar-form navbar-left" method="POST" action="Busqueda">
                             <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Search">
+                              <input type="text" class="form-control" placeholder="Search" name="search">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
                             <li class="dropdown" id="useractive">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="
-    margin-right: -21px !important;
-"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
                                       <li><a href="perfil.jsp">Mi Perfil</a></li>
                                       <li><a href="miscompras.jsp">Mis Compras</a></li>
@@ -122,9 +124,7 @@
                                     </div>
                                   </div>
                                 </div>
-<li id="carrito"><a href="carrito.jsp" style="
-    margin-top: -15px;
-"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                                <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -152,9 +152,11 @@
             <div class="col-md-3">
                 <form method="POST" action="agregarcarrito">
                     <input type="hidden" name="modelo" value="<%=pro.getId_modelo()%>">
+                    <h4>Cantidad</h4>
                     <input type="number" name="cantidad" value="1">
                     <p>S/<%=pro.getPrecio()%></p>
                 <input type="submit" class="btn btn-success" value="Añadir a Carrito" id="añadir">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btnuserr" data-id="${sessionScope.user}">Añadir a Carrito</button>
                 </form>
             </div>
                

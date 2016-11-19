@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author GRLIMA
  */
-@WebServlet(name = "updategeneral", urlPatterns = {"/updategeneral"})
-public class updategeneral extends HttpServlet {
+@WebServlet(name = "Busqueda", urlPatterns = {"/Busqueda"})
+public class Busqueda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +32,10 @@ public class updategeneral extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String colorf = request.getParameter("colorfondo");
-        String nompag = request.getParameter("nompag");
-        String letrac = request.getParameter("letracolor");
-        String tipol = request.getParameter("tipoletra");
-        String tamanol = request.getParameter("tamanoletra");
-        String mcolorf = request.getParameter("menufcolor");
-        String mcolorl = request.getParameter("menulcolor");
-        out.println(colorf + " "+ nompag + "  " + letrac + " " + tipol + " " + tamanol);
-                   HRService h = new HRService();
-            h.ActualizarGeneral(nompag,colorf,letrac,tamanol,tipol,mcolorf,mcolorl);
-          response.sendRedirect("Administrador/Paginas/general.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        String search = request.getParameter("search");
+        HRService hr = new HRService();
+        response.sendRedirect("busqueda.jsp?buscar="+ search);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

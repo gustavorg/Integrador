@@ -31,7 +31,7 @@
                           <li><a href="#">General</a></li>
                         </ul>
                     </li>
-                   <li><a href="../validacion?accion=logout&pag=">Cerrar Sesion</a></li>
+                   <li><a href="../../validacion?accion=logout&pag=">Cerrar Sesion</a></li>
                 </ul>
             </div>
             <div class="col-md-8">
@@ -50,6 +50,14 @@
                                         <h3><span class="label label-default">Color de letra</span></h3>
                                         <input name="letracolor" type="color"  class="form-control" style="width: 20%;margin-left: 39%;"/>
                                     </div>
+                                    <div class="form-group" style="margin-top: -1%;text-align: center;" >
+                                        <h3><span class="label label-default">Color Fondo Menu</span></h3>
+                                        <input name="menufcolor" type="color"  class="form-control" style="width: 20%;margin-left: 39%;"/>
+                                    </div>
+                                    <div class="form-group" style="margin-top: -1%;text-align: center;" >
+                                        <h3><span class="label label-default">Color Letra Menu</span></h3>
+                                        <input name="menulcolor" type="color"  class="form-control" style="width: 20%;margin-left: 39%;"/>
+                                    </div>                                    
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" style="margin-top: -5%;text-align: center;" >

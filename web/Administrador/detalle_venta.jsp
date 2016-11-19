@@ -36,16 +36,16 @@
             </div>
             <div class="col-md-8">
                  <div class="table-responsive cart_info" id="cart-container">
-                            <table class="table table-condensed" id="shop-table" style="margin-top: 13px;">
+                            <table class="table table-hover" style="margin-top: 13px;">
                                 <form method="POST" action="Venta">
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
-							<td class="price">Usuario</td>
-							<td class="quantity">Fecha</td>
-							<td class="total">Total</td>
-                                                        <td class="total"></td>
-							<td></td>
+							<td class="price">Imagen</td>
+                                                        <td class="price">Producto</td>
+							<td class="quantity">Precio</td>
+							<td class="total">Cantidad</td>
+                                                        <td class="total">Total</td>
 						</tr>
 					</thead>
 					<tbody>

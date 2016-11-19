@@ -37,16 +37,16 @@
         </script>
     </head>
     <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
-       HRService c = new HRService(); String tipol = c.general("tipoletra");
+       HRService y = new HRService(); String tipol = y.general("tipoletra");
        HRService u = new HRService(); String sizel = u.general("tamañoletra");
        HRService z = new HRService(); String colorl = z.general("colorletra");
     %>
     <style>
         body{
-            background-color:"<%=fondo%> !important";
-            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
-            font-size: "<%=sizel%>px";
-            color: "<%=colorl%>";
+            background-color:<%=fondo%> !important;
+            font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
+            font-size: <%=sizel%>px;
+            color: <%=colorl%>;
         }
     </style>
     <body>
@@ -76,12 +76,12 @@
                             %>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                          <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                          </form>                           
+                          <form class="navbar-form navbar-left" method="POST" action="Busqueda">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Search" name="search">
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                          </form>                          
                             <li class="dropdown" id="useractive">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
@@ -120,9 +120,7 @@
                                     </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><a href="carrito.jsp" style="
-    margin-top: -15px;
-"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                            <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -130,9 +128,9 @@
             </nav>
         </header>
         <main>
-             <p>Bienvenido ${sessionScope.user}</p>
+            <!-- <p>Bienvenido ${sessionScope.user}</p> -->
             <section>
-        <div class="row">
+        <div class="row" style="margin-top:-14px;">
             <div class="col-md-3">
                 <h1>Categorias</h1>
                 <div class="list-group">
@@ -153,7 +151,7 @@
                   <div class="caption">
                     <h3><%=pro.getNom_modelo()%></h3>
 
-                    <p><%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 42% !important;">Ver Producto</a></p>
+                    <p>S/<%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 30% !important;margin-top: 6px !important;   ">Ver Producto</a></p>
                   </div>
                 </div>
                 </div> </div>       <%  }  %>

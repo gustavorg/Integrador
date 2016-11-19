@@ -33,13 +33,22 @@
        HRService c = new HRService(); String tipol = c.general("tipoletra");
        HRService u = new HRService(); String sizel = u.general("tamañoletra");
        HRService z = new HRService(); String colorl = z.general("colorletra");
+       HRService qw = new HRService(); String cfmenu = qw.general("colorfmenu");
+       HRService ee = new HRService(); String clmenu = ee.general("colorlmenu");
     %>
     <style>
         body{
-            background-color:"<%=fondo%> !important";
-            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
-            font-size: "<%=sizel%>px";
-            color: "<%=colorl%>";
+            background-color:<%=fondo%> !important;
+            font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
+            font-size: <%=sizel%>px;
+            color: <%=colorl%>;
+        }
+        .navbar-default{
+            background-color: <%=cfmenu%> !important;
+            border-color: <%=cfmenu%> !important;
+        }
+        .navbar-default .navbar-nav>li>a {
+            color: <%=clmenu%> !important;
         }
     </style>
     <body>
@@ -69,9 +78,9 @@
                             %>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                          <form class="navbar-form navbar-left">
+                          <form class="navbar-form navbar-left" method="POST" action="Busqueda">
                             <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Search">
+                              <input type="text" class="form-control" placeholder="Search" name="search">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
@@ -121,9 +130,9 @@
             </nav>
         </header>
         <main>
-            <p>Bienvenido ${sessionScope.user}</p>
+           <!-- <p>Bienvenido ${sessionScope.user}</p>-->
             <section>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top:-21px;">
                   <!-- Indicators -->
                   <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -153,7 +162,8 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
-</div>
+            </div>
+                  <div class="container">
         <div class="row">
             <% HRService pr = new HRService();
                 for(Categoria cat: pr.CategoriaNom(1)){ %>
@@ -302,6 +312,7 @@
               </div>
       
             </div>        <%  }  %></div>
+          </div>
           </div>
             </section>
         </main>

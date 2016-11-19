@@ -39,10 +39,10 @@
     %>
     <style>
         body{
-            background-color:"<%=fondo%> !important";
-            font-family: "<%=tipol%>", Helvetica, Arial, sans-serif;
-            font-size: "<%=sizel%>px";
-            color: "<%=colorl%>";
+            background-color:<%=fondo%> !important;
+            font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
+            font-size: <%=sizel%>px;
+            color: <%=colorl%>;
         }
     </style>
     <body>
@@ -72,16 +72,14 @@
                             %>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                          <form class="navbar-form navbar-left">
+                          <form class="navbar-form navbar-left" method="POST" action="Busqueda">
                             <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Search">
+                              <input type="text" class="form-control" placeholder="Search" name="search">
                             </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <input type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
                             <li class="dropdown" id="useractive">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="
-    margin-right: -21px !important;
-"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
                                       <li><a href="#">Mi Perfil</a></li>
                                       <li><a href="#">Mis Compras</a></li>
@@ -194,26 +192,17 @@
                                                 <%}}%>
 					</tbody>
                                         
-                                             <input type="hidden" name="total" value=<%= Math.round(total*100.0)/100.0%> >
-                                              <input type="hidden" name="accion" value="RegistrarVenta">
-                                              
-                                             <td></td><td></td><td></td><td></td><td><h4>TOTAL</h4>
+                                            <input type="hidden" name="total" value=<%= Math.round(total*100.0)/100.0%> >
+                                            <input type="hidden" name="accion" value="RegistrarVenta">
+                                            <td></td><td></td><td></td><td></td><td><h4>TOTAL</h4>
                                                  <span id="txt-subtotal">S/<%= Math.round(total*100.0)/100.0%></span>
-                                             </td>
-                                                                            
-                                             
+                                            </td>       
                                 </form>
                             </table>        
-				
-                                         <div class="total_area" >                                          
-                                             
-
-                                         </div>
 			</div> 
-                                <% if (articulos == null){%>
-                                <h4>No hay Articulos en el carro</h4>
-                                <%}%>
-                                                
+                    <% if (articulos == null){%>
+                    <h4>No hay Articulos en el carro</h4>
+                    <%}%>                
 		</div>
 	</section> <!--/#cart_items-->
     </body>
