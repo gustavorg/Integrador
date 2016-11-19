@@ -382,7 +382,7 @@ public class HRService {
       
     public Vector<Miscompras> MisCompras(String usuario){
         Vector<Miscompras> vecComp=new Vector<Miscompras>();
-        String sql="SELECT a.imagen,a.nombre,b.Precio,b.Cantidad,b.SubTotal FROM productos a,detalle_venta b,usuario c WHERE a.Id_producto = b.Id_producto AND a.precio = b.Precio  AND c.Cod_Usuario = '" + usuario +"'";
+        String sql="SELECT a.imagen,a.nombre,b.Precio,b.Cantidad,b.SubTotal FROM productos a,detalle_venta b,usuario c,venta d WHERE d.Num_V = b.Num_V AND a.Id_producto = b.Id_producto AND a.precio = b.Precio  AND d.Cod_Usuario = c.Cod_Usuario AND c.Cod_Usuario = '" + usuario +"'";
     try{
             pr=conex.prepareStatement(sql);
             rs=pr.executeQuery();
@@ -596,5 +596,32 @@ public class HRService {
             }
         }
         return vecPro;
-    } 
+    }
+      
+    public void Registrarusuario(String alias,String nom,String apm,String app,String pwd,String email,String tipo){
+            try{
+            pr = conex.prepareStatement(
+              "INSERT INTO usuario VALUES (?,?,?,?,?,?,?)");
+
+            // set the preparedstatement parameters
+            pr.setString(1,alias);
+            pr.setString(2,nom);
+            pr.setString(3,apm);
+            pr.setString(4,app);
+            pr.setString(5,pwd);
+            pr.setString(6,email);
+            pr.setString(7,tipo);
+            
+            // call executeUpdate to execute our sql update statement
+            pr.executeUpdate();
+            pr.close(); 
+        }catch(Exception e){System.out.println(e);}finally{
+            try{
+                stm.close();
+                conex.close();
+            }catch(Exception ex){
+
+            }
+        }
+    }
 }

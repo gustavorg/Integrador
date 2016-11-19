@@ -28,10 +28,12 @@
              };
         </script>
     </head>
-        <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
+    <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
        HRService c = new HRService(); String tipol = c.general("tipoletra");
        HRService u = new HRService(); String sizel = u.general("tamañoletra");
        HRService z = new HRService(); String colorl = z.general("colorletra");
+       HRService qw = new HRService(); String cfmenu = qw.general("colorfmenu");
+       HRService ee = new HRService(); String clmenu = ee.general("colorlmenu");
     %>
     <style>
         body{
@@ -39,6 +41,13 @@
             font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
             font-size: <%=sizel%>px;
             color: <%=colorl%>;
+        }
+        .navbar-default{
+            background-color: <%=cfmenu%> !important;
+            border-color: <%=cfmenu%> !important;
+        }
+        .navbar-default .navbar-nav>li>a {
+            color: <%=clmenu%> !important;
         }
     </style>
     <body>
@@ -72,7 +81,7 @@
                             <div class="form-group">
                               <input type="text" class="form-control" placeholder="Search" name="search">
                             </div>
-                            <input type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                           </form>
                             <li class="dropdown" id="useractive">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
@@ -112,7 +121,7 @@
                                    </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                            <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -122,7 +131,7 @@
         <section id="cart_items">
 		<div class="container">
 			<div class="table-responsive cart_info" id="cart-container">
-                            <table class="table table-condensed" id="shop-table" style="margin-top: 13px;">
+                            <table class="table table-hover" style="margin-top: 13px;">
                                 <form method="POST" action="Venta">
 					<thead>
 						<tr class="cart_menu">
@@ -139,8 +148,8 @@
                                                 <%
                                                     
                                                     HRService hr= new HRService();
-                         
-                                                    for(Miscompras comp: hr.MisCompras("rivero19") ){
+                                                    String m = session.getAttribute("user").toString();
+                                                    for(Miscompras comp: hr.MisCompras(m) ){
                                                 %>
 						<tr>
 							<td class="cart_product">

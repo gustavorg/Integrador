@@ -25,10 +25,12 @@
              };
         </script>
     </head>
-        <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
+    <% HRService ñ = new HRService(); String fondo = ñ.general("colorfondo");
        HRService c = new HRService(); String tipol = c.general("tipoletra");
        HRService u = new HRService(); String sizel = u.general("tamañoletra");
        HRService z = new HRService(); String colorl = z.general("colorletra");
+       HRService qw = new HRService(); String cfmenu = qw.general("colorfmenu");
+       HRService ee = new HRService(); String clmenu = ee.general("colorlmenu");
     %>
     <style>
         body{
@@ -36,6 +38,13 @@
             font-family: <%=tipol%>, Helvetica, Arial, sans-serif;
             font-size: <%=sizel%>px;
             color: <%=colorl%>;
+        }
+        .navbar-default{
+            background-color: <%=cfmenu%> !important;
+            border-color: <%=cfmenu%> !important;
+        }
+        .navbar-default .navbar-nav>li>a {
+            color: <%=clmenu%> !important;
         }
     </style>
     <body>

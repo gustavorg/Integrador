@@ -105,19 +105,20 @@
                                             <div class="form-group">
                                               <label for="user" class="col-sm-2 control-label">Usuario</label>
                                               <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputEmail3" name="user" style="width: 60%;margin-left: 39px;">
+                                                <input type="text" class="form-control" id="inputEmail3" autocomplete="off" name="user" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
                                             <div class="form-group">
                                               <label for="pwd" class="col-sm-2 control-label">Password</label>
                                               <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
+                                                <input type="password" class="form-control" autocomplete="off" id="inputPassword3" name="pwd" style="width: 60%;margin-left: 39px;">
                                               </div>
                                             </div>
                                               <input type="hidden" name="accion" value="login">
                                               <input type="hidden" name="pag" value="inicio">
                                                <button type="submit" class="btn btn-primary">Ingresar</button>
                                           </form>
+                                            <a href="registro.jsp" style="margin-left: 47%;"><button class="btn btn-primary" style="margin-top: -26%;">Registrarse</button></a>
                                       </div>
                                     </div>
                                   </div>

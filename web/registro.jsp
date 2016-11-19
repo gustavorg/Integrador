@@ -1,17 +1,10 @@
-<%@page import="Modelo.ContenidoWeb"%>
+<%@page import="Clases.Producto"%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Modelo.HRService"%>
+<%@page import="Modelo.*"%>
 <%@page import="java.io.File"%>
-<%@page import="Modelo.Conexion"%>
 <%   
-   HRService pag = new HRService();
-   String categoria = request.getParameter("cat");
-   if(request.getParameter("cat") == null){
-       categoria = "0";
-   }else{
-       categoria = request.getParameter("cat");
-   }
+   HRService x = new HRService();
 %>
 <!DOCTYPE html>
 <html>
@@ -20,13 +13,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Productos</title>
+        <title>Registro</title>
         <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
         <link href="recursos/css/estilo.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="recursos/js/bootstrap.min.js"></script>
         <script src="recursos/js/estilo.js"></script>
-                <script>
+        <script>
             window.onload = function(){
                 $('#useractive').hide();
                 if($('#user').data('id') != ""){
@@ -76,9 +69,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
                         <ul class="nav navbar-nav">
-                             <%
-                                HRService i = new HRService();
-                                for(ContenidoWeb cw: i.MostrarContenido("inicion","lizardo2016")){ 
+                            <%
+                                HRService pag = new HRService();
+                                for(ContenidoWeb cw: pag.MostrarContenido("inicion","lizardo2016")){ 
                             %>
                             <li><a href="<%=cw.getId()%>.jsp"><%=cw.getContenido()%></a></li>
                             <%  }
@@ -90,13 +83,13 @@
                               <input type="text" class="form-control" placeholder="Search" name="search">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                          </form>                          
+                          </form>
                             <li class="dropdown" id="useractive">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: -21px !important;"><button type="button" class="btn btn-primary btn-lg"  id="usera"><span class="glyphicon glyphicon-user"></span></button></a>
                                     <ul class="dropdown-menu">
                                       <li><a href="perfil.jsp">Mi Perfil</a></li>
                                       <li><a href="miscompras.jsp">Mis Compras</a></li>
-                                      <li><a href="validacion?accion=logout&pag=productos">Cerrar Sesion</a></li>
+                                      <li><a href="validacion?accion=logout&pag=inicio">Cerrar Sesion</a></li>
                                     </ul>
                             </li>
                             <li id="user" data-id="${sessionScope.user}"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btnuser"><span class="glyphicon glyphicon-user"></span></button></li>
@@ -122,14 +115,15 @@
                                               </div>
                                             </div>
                                               <input type="hidden" name="accion" value="login">
-                                              <input type="hidden" name="pag" value="productos">
+                                              <input type="hidden" name="pag" value="inicio">
                                                <button type="submit" class="btn btn-primary">Ingresar</button>
                                           </form>
+                                            <a href="registro.jsp" style="margin-left: 47%;"><button class="btn btn-primary" style="margin-top: -26%;">Registrarse</button></a>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                            <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
+                        <li id="carrito"><a href="carrito.jsp" style="margin-top: -15px;"><button class="btn btn-primary btn-lg" id="btncarrito"><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></li>
                         </ul>
                     </div>
                 </div><!-- /.navbar-collapse -->
@@ -137,35 +131,45 @@
             </nav>
         </header>
         <main>
-            <!-- <p>Bienvenido ${sessionScope.user}</p> -->
+           <!-- <p>Bienvenido ${sessionScope.user}</p>-->
             <section>
-        <div class="row" style="margin-top:-14px;">
-            <div class="col-md-3">
-                <h1>Categorias</h1>
-                <div class="list-group">
-                     <% HRService c = new HRService(); 
-                for(Modelo.Categoria cat: c.Categorias()){ %> 
-                <a href="productos.jsp?cat=<%=cat.getId()%>" class="list-group-item"><%=cat.getNom()%></a>
-                <% } %>
-              </div>
-            </div>
-                   <div class="col-md-9">
-                 <% HRService b = new HRService();
-    
-                for(Clases.Producto pro: b.Productos(categoria)){ %> 
-                <div class="col-sm-6 col-md-3">
+                <div class="container">
                     <div class="row">
-                <div class="thumbnail">
-                    <img src="recursos/imagenes/productos/<%=pro.getImagen()%>" alt="..." width="200"  height="200">
-                  <div class="caption">
-                    <h3><%=pro.getNom_modelo()%></h3>
-
-                    <p>S/<%=pro.getPrecio()%><a href="producto_detalle.jsp?mod=<%=pro.getNom_modelo()%>" class="btn btn-primary" role="button" style="margin-left: 30% !important;margin-top: 6px !important;   ">Ver Producto</a></p>
-                  </div>
+                        <div class="col-md-5">
+                            <img src="recursos/imagenes/nosotros/registrarse.png" class="img-responsive"  style="margin-top: -20px;width: 100%;">
+                        </div>
+                        <div class="col-md-7">
+                            <form style="width:60%;" method="POST" action="registrarusu">
+                                <div class="form-group">
+                                  <label for="nombre">Nombre</label>
+                                  <input type="text" name="nombre" class="form-control" autocomplete="off" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="apm">Apellido Materno</label>
+                                  <input type="text" name="apm" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                  <label for="nombre">Apellido Paterno</label>
+                                  <input type="text" name="app" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                  <label for="alias">Nickname</label>
+                                  <input type="text" name="alias" class="form-control" autocomplete="off">
+                                </div>                                
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Password</label>
+                                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" autocomplete="off">
+                                </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" autocomplete="off">
+                                  </div>
+                                <input type="hidden" value="2" name="tipo">
+                                <button type="submit" class="btn btn-default" style="margin-left: 74%;margin-top:2%;">Registrarse</button>
+                          </form>                             
+                        </div>
+                    </div>
                 </div>
-                </div> </div>       <%  }  %>
-            </div>
-          </div>
             </section>
         </main>
     <footer class="footer">
