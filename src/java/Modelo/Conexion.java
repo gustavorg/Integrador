@@ -14,7 +14,7 @@ public class Conexion {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String servidor = "jdbc:mysql://localhost:3306/dbcmsproductos";
             String usuario = "root";
-            String pass = "";
+            String pass = "123456";
             conexion = DriverManager.getConnection(servidor, usuario, pass);
             System.out.println("Conectando...");
         } catch (ClassNotFoundException ex) {
