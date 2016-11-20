@@ -143,8 +143,8 @@
             <div class="col-md-3">
                 <h1>Categorias</h1>
                 <div class="list-group">
-                     <% HRService c = new HRService(); 
-                for(Modelo.Categoria cat: c.Categorias()){ %> 
+                     <% HRService cv = new HRService();
+                for(Modelo.Categoria cat: cv.Categorias()){ %> 
                 <a href="productos.jsp?cat=<%=cat.getId()%>" class="list-group-item"><%=cat.getNom()%></a>
                 <% } %>
               </div>
